@@ -14,7 +14,12 @@ class BookingType extends AbstractType
         $builder
             ->add('day')
             ->add('hours')
-            ->add('guests')
+            ->add('guests', IntegerType::class, [
+                "attr" => [
+                    "min" => 1,
+                    "max" => 8
+                ]
+            ])
             ->add('allergies')
         ;
     }
