@@ -21,6 +21,13 @@ security:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
+            logout:
+                path: app_logout
+                target: app_home
+            remember_me:
+                secret:   '%kernel.secret%' # required
+                lifetime: 86400 # 1 week in seconds
+                path: /
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 

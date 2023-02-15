@@ -11,13 +11,20 @@
         <label for="username">Email:</label>
         <input type="text" id="username" name="_username" value="{{ last_username }}">
 
-        <label for="password">Password:</label>
+        <label for="password">Mot de passe:</label>
         <input type="password" id="password" name="_password">
 
-        {# If you want to control the URL the user is redirected to on success
-        <input type="hidden" name="_target_path" value="/account"> #}
+        {# If you want to control the URL the user is redirected to on success #}
+        <input type="hidden" name="_target_path" value="/">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <button type="submit">login</button>
+        <label>
+            <input type="checkbox" name="_remember_me" checked/>
+            Rester connecter
+        </label>
+
+        <div>Pas encore inscrit? <a href="{{ path('app_register') }}">Inscription</a></div>
+
+        <button type="submit" class="border">Connexion</button>
     </form>
 {% endblock %}
