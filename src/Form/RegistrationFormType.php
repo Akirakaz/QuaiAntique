@@ -63,6 +63,11 @@ class RegistrationFormType extends AbstractType
                     '6' => 6,
                     '7' => 7,
                     '8' => 8,
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'guests.not_blank'
+                    ])
                 ]
             ])
             ->add('allergies', TextareaType::class, [
