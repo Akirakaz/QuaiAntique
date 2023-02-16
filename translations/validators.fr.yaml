@@ -9,3 +9,5 @@ password:
   char_limit_max: "Le mot de passe ne doit pas contenir plus de {{ limit }} caractères."
 guests:
   not_blank: "Veuillez indiquer le nombre de convives."
+image:
+  wrong_file_ext: L'image est invalide ({{ extension }}). Les fichiers autorisés sont {{ extensions }}.
