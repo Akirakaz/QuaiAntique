@@ -1,6 +1,7 @@
 Makefile
 /.idea/
-/.yarn/
+.yarn/*
+.yarnrc.yaml
 /public/uploaded/
 ###> symfony/framework-bundle ###
 /.env.local
