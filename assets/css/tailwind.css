@@ -1,3 +1,8 @@
 @import 'tailwindcss/base.css';
 @import 'tailwindcss/components.css';
 @import 'tailwindcss/utilities.css';
+
+@font-face {
+  font-family: "Parisienne";
+  src: url("Parisienne-Regular.ttf");
+}

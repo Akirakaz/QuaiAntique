@@ -5,7 +5,11 @@ module.exports = {
     './assets/js/**/*.{js,jsx,ts,tsx,vue}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'parisienne': ['Parisienne', 'sans-serif'],
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
