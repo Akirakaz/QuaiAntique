@@ -15,6 +15,7 @@
     },
     "dependencies": {
         "@tailwindcss/forms": "^0.5.3",
-        "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e"
+        "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
+        "alpinejs": "^3.11.1"
     }
 }
