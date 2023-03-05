@@ -13,8 +13,22 @@ class MenusType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('content')
+            ->add('starter', ChoiceType::class, [
+                'choices' => [
+                    'meal.name' => ''
+                ]
+            ])
+            ->add('main')
+            ->add('dessert')
+            ->add('description')
             ->add('price')
+            ->add('category', ChoiceType::class, [
+                'choices' => [
+                    'Entrées' => 'Entrées',
+                    'Plats' => 'Plats',
+                    'Desserts' => 'Desserts',
+                ],
+            ])
         ;
     }
 
