@@ -17,7 +17,16 @@ class Menus
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $content = null;
+    private ?string $starter = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $main = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $dessert = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
 
     #[ORM\Column]
     private ?int $price = null;
@@ -39,14 +48,50 @@ class Menus
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getStarter(): ?string
     {
-        return $this->content;
+        return $this->starter;
     }
 
-    public function setContent(string $content): self
+    public function setStarter(string $starter): self
     {
-        $this->content = $content;
+        $this->starter = $starter;
+
+        return $this;
+    }
+
+    public function getMain(): ?string
+    {
+        return $this->main;
+    }
+
+    public function setMain(string $main): self
+    {
+        $this->main = $main;
+
+        return $this;
+    }
+
+    public function getDessert(): ?string
+    {
+        return $this->dessert;
+    }
+
+    public function setDessert(string $dessert): self
+    {
+        $this->dessert = $dessert;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
