@@ -1,17 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './templates/**/*.{twig,html.twig}',
-    './assets/js/**/*.{js,jsx,ts,tsx,vue}'
+    "./templates/**/*.{twig,html.twig}",
+    "./assets/js/**/*.{js,jsx,ts,tsx,vue}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        'parisienne': ['Parisienne', 'sans-serif'],
+        parisienne: ["Parisienne", "sans-serif"],
+      },
+      zIndex: {
+        1: "1",
+        2: "2",
+        3: "3",
+        4: "4",
+        5: "5",
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
-}
+  plugins: [require("@tailwindcss/forms")],
+};

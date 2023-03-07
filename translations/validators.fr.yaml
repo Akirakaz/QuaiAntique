@@ -11,3 +11,4 @@ guests:
   not_blank: "Veuillez indiquer le nombre de convives."
 image:
   wrong_file_ext: L'image est invalide ({{ extension }}). Les fichiers autorisés sont {{ extensions }}.
+  title_not_blank: Veuillez ajouter un titre à l'image.

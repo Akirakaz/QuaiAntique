@@ -1,0 +1,37 @@
+{% form_theme form with [
+    'forms_layout/tailwind_form_layout.html.twig',
+    'forms_layout/vich_form_layout.html.twig'
+] %}
+
+<div class="w-full md:w-1/2 mx-auto">
+{{ form_start(form) }}
+    <div class="flex flex-col gap-8">
+        <div class="flex flex-col gap-2">
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title, {'attr': {'class': 'rounded border-slate-300'}}) }}
+
+            <div>
+                {{ form_errors(form.title) }}
+                {{ form_help(form.title) }}
+            </div>
+        </div>
+        <div class="flex flex-col gap-2">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description, {'attr': {'class': 'rounded border-slate-300'}}) }}
+            {{ form_errors(form.description) }}
+        </div>
+        <div class="flex flex-col gap-2">
+            {{ form_label(form.imageFile) }}
+            <div class="overflow-hidden">
+            {{ form_widget(form.imageFile, {'attr': {'class': 'block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-slate-200 file:text-slate-900 hover:file:bg-slate-300'}}) }}
+            </div>
+            <div>
+                {{ form_errors(form.imageFile) }}
+            </div>
+        </div>
+        <div class="flex justify-end">
+            <button class="rounded px-4 py-2 bg-slate-200 hover:bg-slate-300">{{ button_label|default('Enregistrer') }}</button>
+        </div>
+    </div>
+{{ form_end(form) }}
+</div>
