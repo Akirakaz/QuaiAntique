@@ -11,8 +11,9 @@
         {{ vite_entry_script_tags('app') }}
     {% endblock %}
 </head>
-<body>
+<body class="flex h-screen flex-col">
 {% include 'admin/_partials/navigation.html.twig' %}
 {% block body %}{% endblock %}
+{% include 'admin/_partials/footer.html.twig' %}
 </body>
 </html>
