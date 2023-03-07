@@ -11,7 +11,7 @@ class MealsController extends AbstractController
     #[Route('/meals', name: 'app_meals')]
     public function index(): Response
     {
-        return $this->render('meals/index.html.twig', [
+        return $this->render('public/meals/index.html.twig', [
             'controller_name' => 'MealsController',
         ]);
     }

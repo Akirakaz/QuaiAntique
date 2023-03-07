@@ -11,7 +11,7 @@ class OpeningHoursController extends AbstractController
     #[Route('/openinghours', name: 'app_opening_hours')]
     public function index(): Response
     {
-        return $this->render('opening_hours/index.html.twig', [
+        return $this->render('public/opening_hours/index.html.twig', [
             'controller_name' => 'OpeningHoursController',
         ]);
     }
