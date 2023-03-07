@@ -19,7 +19,7 @@ export default defineConfig({
           let extType = assetInfo.name.split(".").at(1);
           if (/png|jpe?g|svg|gif|webp|avif|tiff|bmp|ico/i.test(extType)) {
             extType = "img";
-          } else if (/otf|ttf|woff?2/i.test(extType)) {
+          } else if (/otf|ttf|woff|woff2/i.test(extType)) {
             extType = "fonts";
           }
           return `assets/${extType}/[name]-[hash][extname]`;
