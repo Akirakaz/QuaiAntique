@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Parisienne';
+  src:
+    local('Parisienne'),
+    local('Parisienne-Regular'),
+    url('../fonts/Parisienne-Regular.woff2') format('woff2'),
+    url('../fonts/Parisienne-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
