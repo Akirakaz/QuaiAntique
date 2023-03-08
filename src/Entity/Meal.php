@@ -20,8 +20,8 @@ class Meal
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $price = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: '2')]
+    private ?string $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'meals')]
     private ?MealCategory $category = null;
@@ -55,12 +55,12 @@ class Meal
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?string
     {
         return $this->price;
     }
 
-    public function setPrice(?int $price): self
+    public function setPrice(?string $price): self
     {
         $this->price = $price;
 
