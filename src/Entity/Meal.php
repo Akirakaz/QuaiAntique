@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\MealsRepository;
+use App\Repository\MealRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MealsRepository::class)]
-class Meals
+#[ORM\Entity(repositoryClass: MealRepository::class)]
+class Meal
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,14 +17,14 @@ class Meals
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $content = null;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $price = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $category = null;
+    #[ORM\ManyToOne(inversedBy: 'meals')]
+    private ?MealCategory $category = null;
 
     public function getId(): ?int
     {
@@ -42,14 +43,14 @@ class Meals
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getDescription(): ?string
     {
-        return $this->content;
+        return $this->description;
     }
 
-    public function setContent(string $content): self
+    public function setDescription(string $description): self
     {
-        $this->content = $content;
+        $this->description = $description;
 
         return $this;
     }
@@ -59,19 +60,19 @@ class Meals
         return $this->price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(?int $price): self
     {
         $this->price = $price;
 
         return $this;
     }
 
-    public function getCategory(): ?string
+    public function getCategory(): ?MealCategory
     {
         return $this->category;
     }
 
-    public function setCategory(string $category): self
+    public function setCategory(?MealCategory $category): self
     {
         $this->category = $category;
 
