@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/gallery')]
-class GalleryController extends AbstractController
+class GalleryCrudController extends AbstractController
 {
     #[Route('/', name: 'app_admin_gallery_index', methods: ['GET'])]
     public function index(ImageRepository $imageRepository): Response
