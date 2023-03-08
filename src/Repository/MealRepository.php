@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Meals;
+use App\Entity\Meal;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Meals>
+ * @extends ServiceEntityRepository<Meal>
  *
- * @method Meals|null find($id, $lockMode = null, $lockVersion = null)
- * @method Meals|null findOneBy(array $criteria, array $orderBy = null)
- * @method Meals[]    findAll()
- * @method Meals[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Meal|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Meal|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Meal[]    findAll()
+ * @method Meal[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MealsRepository extends ServiceEntityRepository
+class MealRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Meals::class);
+        parent::__construct($registry, Meal::class);
     }
 
-    public function save(Meals $entity, bool $flush = false): void
+    public function save(Meal $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class MealsRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Meals $entity, bool $flush = false): void
+    public function remove(Meal $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class MealsRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Meals[] Returns an array of Meals objects
+//     * @return Meal[] Returns an array of Meal objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class MealsRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Meals
+//    public function findOneBySomeField($value): ?Meal
 //    {
 //        return $this->createQueryBuilder('m')
 //            ->andWhere('m.exampleField = :val')
