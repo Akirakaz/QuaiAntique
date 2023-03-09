@@ -1,0 +1,45 @@
+<div class="w-full md:w-1/2 mx-auto">
+    {{ form_start(form) }}
+    <div class="flex flex-col gap-8">
+        <div>
+            <div class="flex flex-wrap sm:flex-nowrap justify-between gap-8">
+                <div class="w-full sm:w-1/2 flex flex-col gap-2">
+                    {{ form_label(form.category) }}
+                    {{ form_widget(form.category, {'attr': {'class': 'rounded border-slate-300'}}) }}
+                </div>
+
+                <div class="w-full sm:w-1/5 flex flex-col gap-2">
+                    {{ form_label(form.price) }}
+                    <div class="flex items-center">
+                        {{ form_widget(form.price, {'attr': {'class': 'rounded border-slate-300 w-full'}}) }}
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                {{ form_errors(form.category) }}
+                {{ form_errors(form.price) }}
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title, {'attr': {'class': 'rounded border-slate-300'}}) }}
+
+            <div>
+                {{ form_errors(form.title) }}
+                {{ form_help(form.title) }}
+            </div>
+        </div>
+        <div class="flex flex-col gap-2">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description, {'attr': {'class': 'rounded border-slate-300'}}) }}
+            {{ form_errors(form.description) }}
+        </div>
+
+        <div class="flex justify-end">
+            <button class="rounded px-4 py-2 bg-slate-200 hover:bg-slate-300">{{ button_label|default('Enregistrer') }}</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>
