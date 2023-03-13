@@ -1,0 +1,64 @@
+{% extends 'admin/base.html.twig' %}
+
+{% set title = "Gestion des Menus" %}
+
+{% block pageTitle %}Admin - {{ title }}{% endblock %}
+
+{% block body %}
+<main class="mx-auto w-full max-w-7xl flex-grow px-4 pt-20">
+    {% include 'admin/_partials/breadcrumb.html.twig' with {
+        'label' : title,
+        'categoryTitle': 'Menus',
+        'categorySlug': path('app_admin_menu_index'),
+    } %}
+
+    <h1 class="my-8 text-3xl">{{ title }}</h1>
+
+    <div class="flex justify-end">
+        <a class="rounded bg-slate-200 px-4 py-2 hover:bg-slate-300" href="{{ path('app_admin_menu_new') }}">Ajouter un menu</a>
+    </div>
+
+    <div class="overflow-auto">
+        <table class="mt-4 min-w-full table-auto divide-y divide-gray-200">
+            <thead class="bg-slate-300">
+            <tr>
+                <th scope="col" class="p-4 text-left text-sm text-slate-600">ID</th>
+                <th scope="col" class="p-4 text-left text-sm text-slate-600">Titre</th>
+                <th scope="col" class="p-4 text-right text-sm text-slate-600">Actions</th>
+            </tr>
+            </thead>
+
+            <tbody class="bg-white divide-y divide-gray-300">
+            {% for menu in menus %}
+                <tr>
+                    <td class="p-2 text-sm font-medium text-gray-500">
+                        <div class="inline-flex items-center gap-x-3">
+                            <span>#{{ menu.id }}</span>
+                        </div>
+                    </td>
+
+                    <td class="p-2 text-sm text-gray-500">{{ menu.title }}</td>
+
+                    <td class="p-2 text-sm">
+                        <div class="flex justify-end gap-x-2">
+
+                            <a title="Editer" class="rounded bg-slate-200 px-4 py-2 hover:bg-slate-300" href="{{ path('app_admin_menu_edit', {'id': menu.id}) }}">
+                                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+                                </svg>
+                            </a>
+
+                            {{ include('admin/menu/_delete_form.html.twig') }}
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Aucun menu disponible</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+{% endblock %}
