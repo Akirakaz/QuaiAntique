@@ -21,14 +21,6 @@ class MenuController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_menu_show', methods: ['GET'])]
-    public function show(Menu $menu): Response
-    {
-        return $this->render('admin/menu/show.html.twig', [
-            'menu' => $menu,
-        ]);
-    }
-
     #[Route('/new', name: 'app_admin_menu_new', methods: ['GET', 'POST'])]
     public function new(Request $request, MenuRepository $menuRepository): Response
     {
@@ -39,7 +31,7 @@ class MenuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $menuRepository->save($menu, true);
 
-            return $this->redirectToRoute('app_menu_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_menu_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/menu/new.html.twig', [
