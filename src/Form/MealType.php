@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class MealType extends AbstractType
 {
@@ -37,6 +38,10 @@ class MealType extends AbstractType
                 ],
                 'constraints' => [
                     new NotBlank(),
+                    new Regex([
+                        'pattern' => '/^[0-9]{1,3}([.|,][0-9]{1,2})?$/',
+                        'message' => 'price.invalid',
+                    ]),
                 ],
             ])
             ->add('category', EntityType::class, [
