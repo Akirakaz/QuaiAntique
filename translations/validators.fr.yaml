@@ -16,3 +16,15 @@ meal:
   not_blank: "Veuillez donner un nom à votre plat."
 meal_category:
   not_blank: "Veuillez sélectionner une catégorie."
+menu:
+  title:
+    not_blank: "Veuillez donner un nom à votre menu."
+  desc:
+    not_blank: "Veuillez donner une description à votre menu."
+formula:
+  title:
+    not_blank: "Veuillez donner un nom à votre formule."
+  desc:
+    not_blank: "Veuillez donner une description à votre formule."
+price:
+  invalid: "Veuillez saisir un montant valide. (min: 0, max: 999.99)"

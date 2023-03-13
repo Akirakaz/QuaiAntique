@@ -20,7 +20,6 @@ class CreateCategoriesFixtures extends Fixture implements FixtureGroupInterface
           'Entrée',
           'Plat',
           'Dessert',
-          'Boisson'
         ];
 
         foreach ($defaultCategories as $category) {
