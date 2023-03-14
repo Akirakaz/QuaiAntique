@@ -1,26 +1,29 @@
 <footer>
-    <div class="flex w-full justify-center bg-indigo-200 p-4">
-        <div class="flex flex-wrap gap-y-4 divide-y divide-indigo-300 sm:divide-x-2 sm:divide-y-0 sm:divide-indigo-900">
-            {% for day in showOpening() %}
-                <div class="w-full p-2 text-center text-sm sm:text-left sm:w-1/2 lg:w-1/4 2xl:w-fit min-w-[12rem]">
-                    <p class="font-semibold">{{ day.day|renameDay }}</p>
-                    <p>
-                        {% if day.isMorningClosed and day.isEveningClosed %}
-                            <span>Fermé</span>
-                        {% else %}
-                            {% if not day.isMorningClosed %}
-                                {{ day.openMorning | date("H:i") }} à {{ day.closeMorning | date("H:i") }}
+    <div class="flex flex-col w-full justify-center bg-indigo-200 p-4">
+        <div class="max-w-8xl mx-auto">
+            <p class="p-2 font-semibold">Nous sommes ouvert les:</p>
+            <div class="flex flex-wrap gap-y-4 divide-y divide-indigo-300 sm:divide-x-2 sm:divide-y-0 sm:divide-indigo-900">
+                {% for day in showOpening() %}
+                    <div class="w-full p-2 text-center text-sm sm:text-left sm:w-1/2 lg:w-1/4 2xl:w-fit min-w-[12rem]">
+                        <p class="font-semibold">{{ day.day|renameDay }}</p>
+                        <p>
+                            {% if day.isMorningClosed and day.isEveningClosed %}
+                                <span>Fermé</span>
+                            {% else %}
+                                {% if not day.isMorningClosed %}
+                                    {{ day.openMorning | date("H:i") }} à {{ day.closeMorning | date("H:i") }}
+                                {% endif %}
+                                {% if not day.isMorningClosed and not day.isEveningClosed %}
+                                    <span>-</span>
+                                {% endif %}
+                                {% if not day.isEveningClosed %}
+                                    {{ day.openEvening | date("H:i") }} à {{ day.closeEvening | date("H:i") }}
+                                {% endif %}
                             {% endif %}
-                            {% if not day.isMorningClosed and not day.isEveningClosed %}
-                                <span>-</span>
-                            {% endif %}
-                            {% if not day.isEveningClosed %}
-                                {{ day.openEvening | date("H:i") }} à {{ day.closeEvening | date("H:i") }}
-                            {% endif %}
-                        {% endif %}
-                    </p>
-                </div>
-            {% endfor %}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div class="bg-indigo-900 p-12 text-white">
