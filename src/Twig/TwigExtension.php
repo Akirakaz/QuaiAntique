@@ -2,11 +2,21 @@
 
 namespace App\Twig;
 
+use App\Entity\Opening;
+use Doctrine\Persistence\ManagerRegistry;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 class TwigExtension extends AbstractExtension
 {
+    private ManagerRegistry $registry;
+
+    public function __construct(ManagerRegistry $registry)
+    {
+        $this->registry = $registry;
+    }
+
     public function getFilters(): array
     {
         return [
@@ -14,6 +24,15 @@ class TwigExtension extends AbstractExtension
             new TwigFilter('renameDay', [$this, 'renameDay']),
         ];
     }
+
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction('showOpening', [$this, 'getOpeningDays']),
+        ];
+    }
+
+    //-- Filters
 
     public function boolIconFormater(bool $state): string
     {
@@ -45,5 +64,13 @@ class TwigExtension extends AbstractExtension
         }
 
         return null;
+    }
+
+    //-- Functions
+
+    public function getOpeningDays(): array
+    {
+        $openingHoursRepository = $this->registry->getRepository(Opening::class);
+        return $openingHoursRepository->findAll();
     }
 }
