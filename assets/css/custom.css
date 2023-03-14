@@ -1,1 +1,4 @@
 /* Custom styles */
+select, input, textarea {
+  @apply !rounded;
+}

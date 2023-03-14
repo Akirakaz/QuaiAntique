@@ -1,21 +1,32 @@
 <footer>
-  <div class="flex bottom-0 px-4 py-4 w-full bg-indigo-900 h-24">
-    <a class="text-3xl font-bold leading-none" href="/templates/base.html.twig">
-      <svg class="h-16 w-24 bg-white rounded border-yellow-600 hover:fill-black" alt="logo" viewBox="0 0 100 100">
-        <path src="../../assets/img/logo.svg" ></path>
-      </svg>
-    </a>
-    {# <div class="row">          
-      <h3>Horaires d'ouvertures</h3>
-      {% for openinghour in openinghours %}
-        <div class="contenu offset-1 col-4 offset-lg-1 col-lg-4">
-          <p class="">{{ openinghour.day }}</p>
-          <p class="">{{ openinghour.openLunch }}</p>
-          <p class="">{{ openinghour.closeLunch }}</p>
-          <p class="">{{ openinghour.openDinner }}</p>
-          <p class="">{{ openinghour.closeDinner }}</p>
+    <div class="flex flex-col w-full justify-center bg-indigo-200 p-4">
+        <div class="max-w-8xl mx-auto">
+            <p class="p-2 font-semibold">Nous sommes ouvert les:</p>
+            <div class="flex flex-wrap gap-y-4 divide-y divide-indigo-300 sm:divide-x-2 sm:divide-y-0 sm:divide-indigo-900">
+                {% for day in showOpening() %}
+                    <div class="w-full p-2 text-center text-sm sm:text-left sm:w-1/2 lg:w-1/4 2xl:w-fit min-w-[12rem]">
+                        <p class="font-semibold">{{ day.day|renameDay }}</p>
+                        <p>
+                            {% if day.isMorningClosed and day.isEveningClosed %}
+                                <span>Fermé</span>
+                            {% else %}
+                                {% if not day.isMorningClosed %}
+                                    {{ day.openMorning | date("H:i") }} à {{ day.closeMorning | date("H:i") }}
+                                {% endif %}
+                                {% if not day.isMorningClosed and not day.isEveningClosed %}
+                                    <span>-</span>
+                                {% endif %}
+                                {% if not day.isEveningClosed %}
+                                    {{ day.openEvening | date("H:i") }} à {{ day.closeEvening | date("H:i") }}
+                                {% endif %}
+                            {% endif %}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-      {% endfor %}
     </div>
-  </div> #}
+    <div class="bg-indigo-900 p-12 text-white">
+        <p class="text-center text-sm">Restaurant Quai Antique - © 2023</p>
+    </div>
 </footer>
