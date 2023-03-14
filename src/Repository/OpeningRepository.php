@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\OpeningHours;
+use App\Entity\Opening;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<OpeningHours>
+ * @extends ServiceEntityRepository<Opening>
  *
- * @method OpeningHours|null find($id, $lockMode = null, $lockVersion = null)
- * @method OpeningHours|null findOneBy(array $criteria, array $orderBy = null)
- * @method OpeningHours[]    findAll()
- * @method OpeningHours[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Opening|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Opening|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Opening[]    findAll()
+ * @method Opening[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class OpeningHoursRepository extends ServiceEntityRepository
+class OpeningRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, OpeningHours::class);
+        parent::__construct($registry, Opening::class);
     }
 
-    public function save(OpeningHours $entity, bool $flush = false): void
+    public function save(Opening $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class OpeningHoursRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(OpeningHours $entity, bool $flush = false): void
+    public function remove(Opening $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
