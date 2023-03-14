@@ -1,0 +1,93 @@
+{% extends 'admin/base.html.twig' %}
+
+{% set title = "Gestion des jours d'ouverture" %}
+
+{% block pageTitle %}Admin - {{ title }}{% endblock %}
+
+{% block body %}
+    <main class="mx-auto w-full max-w-7xl flex-grow px-4 pt-20">
+        {% include 'admin/_partials/breadcrumb.html.twig' with {
+            'label' : title,
+            'categoryTitle': "Jour d'ouverture",
+            'categorySlug': path('app_admin_opening_index'),
+        } %}
+
+        <h1 class="my-8 text-3xl">{{ title }}</h1>
+
+        <div class="flex justify-end">
+            <a class="rounded bg-slate-200 px-4 py-2 hover:bg-slate-300" href="{{ path('app_admin_opening_new') }}">Ajouter un jour</a>
+        </div>
+
+        <div class="overflow-auto">
+            <table class="mt-4 min-w-full table-auto divide-y divide-gray-200">
+                <thead class="bg-slate-300">
+                <tr>
+                    <th scope="col" class="px-2 py-4 text-left text-sm text-slate-600">Jour</th>
+                    <th scope="col" class="px-2 py-4 text-center text-sm text-slate-600">Service</th>
+                    <th scope="col" class="px-2 py-4 text-center text-sm text-slate-600">Ouverture</th>
+                    <th scope="col" class="px-2 py-4 text-center text-sm text-slate-600">Fermeture</th>
+                    <th scope="col" class="px-2 py-4 text-center text-sm text-slate-600">Fermé?</th>
+                    <th scope="col" class="px-2 py-4 text-center text-sm text-slate-600">-</th>
+                    <th scope="col" class="px-2 py-4 text-center text-sm text-slate-600">Service</th>
+                    <th scope="col" class="px-2 py-4 text-center text-sm text-slate-600">Ouverture</th>
+                    <th scope="col" class="px-2 py-4 text-center text-sm text-slate-600">Fermeture</th>
+                    <th scope="col" class="px-2 py-4 text-center text-sm text-slate-600">Fermé?</th>
+                    <th scope="col" class="px-2 py-4 text-center text-sm text-slate-600">Actions</th>
+                </tr>
+                </thead>
+
+                <tbody class="bg-white divide-y divide-gray-300">
+                {% for day in opening|sort((a,b) => a.day <=> b.day) %}
+                    <tr>
+                        <td class="p-2 text-sm">
+                            <span class="font-bold">{{ day.day|renameDay }}</span>
+                        </td>
+                        <td class="p-2 text-sm text-center">Midi</td>
+                        <td class="p-2 text-sm text-center">
+                            <span class="font-semibold">{{ day.openMorning|date("H:i") }}</span>
+                        </td>
+                        <td class="p-2 text-sm text-center">
+                            <span class="font-semibold">{{ day.closeMorning|date("H:i") }}</span>
+                        </td>
+                        <td class="p-2 text-sm text-right">
+                            <span class="flex justify-center">{{ day.morningClosed|boolIconFormater|raw }}</span>
+                        </td>
+
+                        <td class="p-2 text-sm text-center">-</td>
+                        <td class="p-2 text-sm text-center">Soir</td>
+
+                        <td class="p-2 text-sm text-center">
+                            <span class="font-semibold">{{ day.openEvening|date("H:i") }}</span>
+                        </td>
+                        <td class="p-2 text-sm text-center">
+                            <span class="font-semibold">{{ day.closeEvening|date("H:i") }}</span>
+                        </td>
+                        <td class="p-2 text-sm text-right">
+                            <span class="flex justify-center">{{ day.eveningClosed|boolIconFormater|raw }}</span>
+                        </td>
+
+                        <td class="p-2 text-sm">
+                            <div class="flex justify-center gap-x-2">
+
+                                <a title="Editer" class="rounded bg-slate-200 px-4 py-2 hover:bg-slate-300" href="{{ path('app_admin_opening_edit', {'id': day.id}) }}">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+                                    </svg>
+                                </a>
+
+                                {{ include('admin/opening/_delete_form.html.twig', {'id': day.id}) }}
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">Aucun menu disponible</td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+{% endblock %}
