@@ -71,7 +71,7 @@ class OpeningController extends AbstractController
             'choices'  => $filterDay::OPENING_DAY,
             'disabled' => true,
         ]);
-        $form->add('save', SubmitType::class, ['label' => 'Mettre à jour']);
+        
         $form->remove('saveAndAdd');
 
         $form->handleRequest($request);

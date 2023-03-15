@@ -40,7 +40,7 @@
                     {{ form_row(form.saveAndAdd, {'attr': {'class': 'rounded px-4 py-2 bg-slate-200 hover:bg-slate-300'}}) }}
                 {% endif %}
 
-                {{ form_row(form.save, {'attr': {'class': 'rounded px-4 py-2 bg-slate-200 hover:bg-slate-300'}}) }}
+                <button class="rounded px-4 py-2 bg-slate-200 hover:bg-slate-300">{{ button_label|default('Enregistrer') }}</button>
             </div>
             {{ form_end(form) }}
         {% else %}

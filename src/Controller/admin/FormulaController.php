@@ -6,6 +6,7 @@ use App\Entity\Formula;
 use App\Form\FormulaType;
 use App\Repository\FormulaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,13 +26,19 @@ class FormulaController extends AbstractController
     public function new(Request $request, FormulaRepository $formulaRepository): Response
     {
         $formula = new Formula();
-        $form = $this->createForm(FormulaType::class, $formula);
+        $form    = $this->createForm(FormulaType::class, $formula);
+        $form->add('saveAndAdd', SubmitType::class, ['label' => 'Ajouter une autre']);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $formulaRepository->save($formula, true);
 
-            return $this->redirectToRoute('app_admin_formula_index', [], Response::HTTP_SEE_OTHER);
+            $nextAction = $form->get('saveAndAdd')->isClicked()
+                ? 'app_admin_formula_new'
+                : 'app_admin_formula_index';
+
+            return $this->redirectToRoute($nextAction);
         }
 
         return $this->render('admin/formula/new.html.twig', [

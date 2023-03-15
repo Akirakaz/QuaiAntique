@@ -1,4 +1,8 @@
 /* Custom styles */
+[x-cloak] {
+  display: none !important;
+}
+
 select, input, textarea {
   @apply !rounded;
 }

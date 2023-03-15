@@ -4,6 +4,8 @@ namespace App\Twig;
 
 use App\Entity\Opening;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\RouterInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -11,10 +13,12 @@ use Twig\TwigFunction;
 class TwigExtension extends AbstractExtension
 {
     private ManagerRegistry $registry;
+    private RequestStack    $request;
 
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, RequestStack $requestStack,)
     {
         $this->registry = $registry;
+        $this->request  = $requestStack;
     }
 
     public function getFilters(): array
@@ -29,6 +33,7 @@ class TwigExtension extends AbstractExtension
     {
         return [
             new TwigFunction('showOpening', [$this, 'getOpeningDays']),
+            new TwigFunction('isMenuActive', [$this, 'isMenuActive']),
         ];
     }
 
@@ -72,5 +77,16 @@ class TwigExtension extends AbstractExtension
     {
         $openingHoursRepository = $this->registry->getRepository(Opening::class);
         return $openingHoursRepository->findAll();
+    }
+
+    public function isMenuActive(array $routes, ?string $classes = 'active', ?string $default = null): ?string
+    {
+        $currentRoute = $this->request->getCurrentRequest()->attributes->get('_route');
+
+        if (in_array($currentRoute, $routes, true)) {
+            return $classes;
+        }
+
+        return $default;
     }
 }
