@@ -8,6 +8,11 @@ module.exports = {
     extend: {
       fontFamily: {
         parisienne: ["Parisienne", "sans-serif"],
+        adrenalines: ["Adrenalines", "sans-serif"],
+        playball: ["Playball", "sans-serif"],
+      },
+      backgroundImage: {
+        'banner': "url('./assets/img/top-banner.jpg')",
       },
       zIndex: {
         1: "1",
@@ -18,7 +23,7 @@ module.exports = {
       },
       maxWidth: {
         '8xl': '90rem',
-      }
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],
