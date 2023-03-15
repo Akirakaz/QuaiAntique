@@ -45,7 +45,7 @@ class OpeningType extends AbstractType
                 'label'    => 'Fermé',
                 'required' => false,
             ])
-            ->add('save', SubmitType::class, ['label' => 'Ajouter et fermer']);
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

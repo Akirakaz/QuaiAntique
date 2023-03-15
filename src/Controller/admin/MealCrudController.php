@@ -6,6 +6,7 @@ use App\Entity\Meal;
 use App\Form\MealType;
 use App\Repository\MealRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,12 +27,18 @@ class MealCrudController extends AbstractController
     {
         $meal = new Meal();
         $form = $this->createForm(MealType::class, $meal);
+        $form->add('saveAndAdd', SubmitType::class, ['label' => 'Ajouter un autre']);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $mealRepository->save($meal, true);
 
-            return $this->redirectToRoute('app_admin_meal_index', [], Response::HTTP_SEE_OTHER);
+            $nextAction = $form->get('saveAndAdd')->isClicked()
+                ? 'app_admin_meal_new'
+                : 'app_admin_meal_index';
+
+            return $this->redirectToRoute($nextAction);
         }
 
         return $this->render('admin/meal/new.html.twig', [

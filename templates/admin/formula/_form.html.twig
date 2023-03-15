@@ -52,7 +52,11 @@
             {{ form_errors(form.menu) }}
         </div>
 
-        <div class="flex justify-end">
+        <div class="mt-8 flex justify-end gap-4">
+            {% if form.saveAndAdd is defined %}
+                {{ form_row(form.saveAndAdd, {'attr': {'class': 'rounded px-4 py-2 bg-slate-200 hover:bg-slate-300'}}) }}
+            {% endif %}
+            
             <button class="rounded px-4 py-2 bg-slate-200 hover:bg-slate-300">{{ button_label|default('Enregistrer') }}</button>
         </div>
     </div>
