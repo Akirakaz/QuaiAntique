@@ -39,6 +39,8 @@ class GalleryCrudController extends AbstractController
                 ? 'app_admin_gallery_new'
                 : 'app_admin_gallery_index';
 
+            $this->addFlash('success', "L'image a bien été enregistrée.");
+
             return $this->redirectToRoute($nextAction);
         }
 
@@ -57,20 +59,24 @@ class GalleryCrudController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $imageRepository->save($image, true);
 
+            $this->addFlash('succès', "L'image a bien été mise à jour.");
+
             return $this->redirectToRoute('app_admin_gallery_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/gallery/edit.html.twig', [
             'image' => $image,
-            'form' => $form,
+            'form'  => $form,
         ]);
     }
 
     #[Route('/{id}', name: 'app_admin_gallery_delete', methods: ['POST'])]
     public function delete(Request $request, Image $image, ImageRepository $imageRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$image->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $image->getId(), $request->request->get('_token'))) {
             $imageRepository->remove($image, true);
+
+            $this->addFlash('succès', "L'image a bien été supprimée.");
         }
 
         return $this->redirectToRoute('app_admin_gallery_index', [], Response::HTTP_SEE_OTHER);

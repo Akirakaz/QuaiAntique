@@ -40,6 +40,7 @@ class OpeningController extends AbstractController
 
         if (empty($filterDay->openingDayFilter())) {
             $form->remove('day');
+            $this->addFlash('info', "Vous avez ajouté tous les jours de la semaine.");
         }
 
         $form->handleRequest($request);
@@ -51,6 +52,8 @@ class OpeningController extends AbstractController
             $nextAction = $form->get('saveAndAdd')->isClicked()
                 ? 'app_admin_opening_new'
                 : 'app_admin_opening_index';
+
+            $this->addFlash('succès', "L'horaire a bien été enregistrée.");
 
             return $this->redirectToRoute($nextAction);
         }
@@ -79,6 +82,8 @@ class OpeningController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $openingDayRepository->save($openingDay, true);
 
+            $this->addFlash('succès', "L'horaire à bien été mis à jour.");
+
             return $this->redirectToRoute('app_admin_opening_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -93,6 +98,8 @@ class OpeningController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $openingDay->getId(), $request->request->get('_token'))) {
             $openingDayRepository->remove($openingDay, true);
+
+            $this->addFlash('succès', "L'horaire à bien été supprimé'.");
         }
 
         return $this->redirectToRoute('app_admin_opening_index', [], Response::HTTP_SEE_OTHER);

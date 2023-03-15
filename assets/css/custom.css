@@ -6,3 +6,36 @@
 select, input, textarea {
   @apply !rounded;
 }
+
+
+.toast-green {
+  @apply border-l-green-500 shadow-green-100 border-green-500;
+
+  .toast-label {
+    @apply text-green-600;
+  }
+}
+
+.toast-red {
+  @apply border-l-red-500 shadow-red-100 border-red-500;
+
+  .toast-label {
+    @apply text-red-600;
+  }
+}
+
+.toast-yellow {
+  @apply border-l-yellow-500 shadow-yellow-100 border-yellow-500;
+
+  .toast-label {
+    @apply text-yellow-600;
+  }
+}
+
+.toast-blue {
+  @apply border-l-blue-500 shadow-blue-100 border-blue-500;
+
+  .toast-label {
+    @apply text-blue-600;
+  }
+}
