@@ -34,6 +34,8 @@ class MenuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $menuRepository->save($menu, true);
 
+            $this->addFlash('succès', "Le menu a bien été enregistrée.");
+
             return $this->redirectToRoute('app_admin_menu_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -56,6 +58,8 @@ class MenuController extends AbstractController
                 ? 'app_admin_menu_new'
                 : 'app_admin_menu_index';
 
+            $this->addFlash('succès', "Le menu a bien été mis à jour.");
+
             return $this->redirectToRoute($nextAction);
         }
 
@@ -70,6 +74,8 @@ class MenuController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$menu->getId(), $request->request->get('_token'))) {
             $menuRepository->remove($menu, true);
+
+            $this->addFlash('succès', "Le menu à bien été supprimé.");
         }
 
         return $this->redirectToRoute('app_admin_menu_index', [], Response::HTTP_SEE_OTHER);
