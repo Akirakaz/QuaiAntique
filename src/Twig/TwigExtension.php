@@ -34,6 +34,7 @@ class TwigExtension extends AbstractExtension
         return [
             new TwigFunction('showOpening', [$this, 'getOpeningDays']),
             new TwigFunction('isMenuActive', [$this, 'isMenuActive']),
+            new TwigFunction('setColor', [$this, 'setColor']),
         ];
     }
 
@@ -88,5 +89,15 @@ class TwigExtension extends AbstractExtension
         }
 
         return $default;
+    }
+
+    public function setColor(string $color): ?string
+    {
+        return match ($color) {
+            'succès'    => 'green',
+            'erreur'    => 'red',
+            'attention' => 'yellow',
+            'info'      => 'blue',
+        };
     }
 }
