@@ -3,16 +3,43 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Inscription</h1>
+<body class="bg-white font-family-karla h-screen">
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.guests) }}
-        {{ form_row(registrationForm.allergies) }}
+    <div class="w-full flex flex-wrap">
+        <div class="w-1/2">
+            <img class="object-cover w-full h-screen hidden md:block rounded" src="{{ asset('assets/img/inscriptionMB.jpg') }}">
+        </div>
+        <div class="w-full md:w-1/2 flex flex-col">
 
-        <button type="submit" class="border">S'inscrire</button>
-    {{ form_end(registrationForm) }}
-
-    <div>Déjà inscrit? <a href="{{ path('app_login') }}">Connexion</a></div>
+            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+                <p class="text-center text-5xl font-playball">Inscription</p>
+                <form class="flex flex-col pt-3 md:pt-8" onsubmit="event.preventDefault();">
+                    {{ form_start(registrationForm) }}
+                    <div class="flex flex-col pt-4">
+                        {{ form_row(registrationForm.email) }}
+                    </div>
+                    <div class="flex flex-col pt-4">
+                        {{ form_row(registrationForm.plainPassword) }}
+                    </div>
+                    <div class="flex flex-col pt-4">
+                        {{ form_row(registrationForm.allergies) }}
+                    </div>
+                    <div class="flex flex-col pt-4">
+                        {{ form_row(registrationForm.guests) }}
+                    </div>
+                    <div class="flex">
+                        <input type="submit" value="Valider" class="bg-blue-600 text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8 w-40 mb-5">
+                    </div>
+                    {{ form_end(registrationForm) }}
+                </form>
+            </div>
+            <div class="flex justify-end mr-10 mb-10">
+                Déjà inscrit ? 
+                <a href="{{ path('app_login') }}" class="ml-3 uppercase font-semibold">
+                    Connexion
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
 {% endblock %}
