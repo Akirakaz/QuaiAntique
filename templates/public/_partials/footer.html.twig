@@ -1,8 +1,8 @@
 <footer>
-    <div class="flex flex-col w-full justify-center bg-indigo-200 p-4">
+    <div class="flex flex-col w-full justify-center bg-slate-400 p-4">
         <div class="max-w-8xl mx-auto">
-            <p class="p-2 font-semibold">Nous sommes ouvert les:</p>
-            <div class="flex flex-wrap gap-y-4 divide-y divide-indigo-300 sm:divide-x-2 sm:divide-y-0 sm:divide-indigo-900">
+            <p class="p-2 font-semibold text-center">Nous sommes ouvert les:</p>
+            <div class="flex flex-wrap gap-y-4 divide-y divide-slate-800 sm:divide-x-2 sm:divide-y-0">
                 {% for day in showOpening()|sort((a,b) => a.day <=> b.day) %}
                     <div class="w-full p-2 text-center text-sm sm:text-left sm:w-1/2 lg:w-1/4 2xl:w-fit min-w-[12rem]">
                         <p class="font-semibold">{{ day.day|renameDay }}</p>
@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    <div class="bg-indigo-900 p-12 text-white">
+    <div class="bg-slate-800 p-12 text-white">
         <p class="text-center text-sm">Restaurant Quai Antique - © 2023</p>
     </div>
 </footer>
