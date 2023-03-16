@@ -1,20 +1,38 @@
 {% extends 'public/base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Applications/XAMPP/xamppfiles/htdocs/QuaiAntique/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Applications/XAMPP/xamppfiles/htdocs/QuaiAntique/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+<body class="bg-slate-500 w-full flex-col">
+    <p class="text-center text-5xl font-playball mt-10">Création</p>
+    <div class="top-64 right-0 fixed">
+        <a href="{{path('app_booking')}}">
+            <button class="bg-blue-600 rounded-lg text-white w-8" type="button">
+                R</br>é</br>s</br>e</br>r</br>v</br>e</br>r
+            </button>
+        </a>
+    </div>
+    {# {% for image in images %} #}
+        <div class="flex justify-center my-10">
+            <div
+            class="flex flex-col rounded-lg shadow-lg dark:bg-neutral-700 md:max-w-xl md:flex-row">
+            <img
+                class="h-96 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                src="{{ asset('assets/img/inscriptionMB.jpg')}}"
+                alt="Titre" 
+                data-modalpreview="modal-preview"/>
+            <div class="flex flex-col justify-start p-6">
+                <h5
+                class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+                Titre
+                </h5>
+                <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                Blabla
+                </p>
+            </div>
+            </div>
+        </div>
+      {# {% endfor %} #}
+      
+</body>
 {% endblock %}
