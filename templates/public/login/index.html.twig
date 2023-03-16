@@ -6,25 +6,76 @@
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
+    <p class="text-center text-5xl font-playball mt-10 mb-5">Connexion</p>
+    <div class="flex-col justify-center w-auto">
+        <div class="flex justify-center mx-20
+        py-10">
+            <form action="{{ path('app_login') }}" method="post">
+                <div class="flex justify-center mb-5">
+                    <label for="username" class="mr-5 mt-2">Email:</label>
+                    <input type="text" id="username" name="_username" value="{{ last_username }}">
+                </div>
+                <div class="flex justify-center my-5"></div>
+                    <label for="password" class="mr-5">Mot de passe:</label>
+                    <input type="password" id="password" name="_password">
+                </div>
+                <input type="hidden" name="_target_path" value="/">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <div class="flex justify-center">
+                    <label class="justify-center">
+                        <input type="checkbox" name="_remember_me" checked/>
+                        Rester connecter
+                    </label>
+                </div>  
+                <div class="flex justify-center">
+                    <button type="submit" class="bg-blue-600 rounded-xl text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8 justify-end mb-10">
+                        Connexion
+                    </button>
+                </div>  
+                
+                
+                <div class="flex justify-end mr-10 mb-10">
+                    Pas encore inscrit? 
+                    <a href="{{ path('app_register') }}" class="ml-3 uppercase font-semibold">
+                        Inscription
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
 
-    <form action="{{ path('app_login') }}" method="post">
-        <label for="username">Email:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}">
-
-        <label for="password">Mot de passe:</label>
-        <input type="password" id="password" name="_password">
-
-        {# If you want to control the URL the user is redirected to on success #}
-        <input type="hidden" name="_target_path" value="/">
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-        <label>
-            <input type="checkbox" name="_remember_me" checked/>
-            Rester connecter
-        </label>
-
-        <div>Pas encore inscrit? <a href="{{ path('app_register') }}">Inscription</a></div>
-
-        <button type="submit" class="border">Connexion</button>
-    </form>
+    {# <body class="bg-white font-family-karla h-screen">
+        <div class="w-3/4 flex flex-wrap">
+                <div class="flex flex-col justify-center my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+                    <p class="text-center text-5xl font-playball mb-10">Connexion</p>
+                    <form action="{{ path('app_login') }}" method="post">
+                        <div class="flex-col justify-center mb-5">
+                            <label for="username" class="mr-5 mt-2">Email:</label>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}">
+                        </div>
+                        <div class="flex-col justify-center my-5"></div>
+                            <label for="password" class="mr-5">Mot de passe:</label>
+                            <input type="password" id="password" name="_password">
+                        </div>
+                        <input type="hidden" name="_target_path" value="/">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <div class="flex justify-center mb-5 bg-slate-200">
+                            <label>
+                                <input type="checkbox" name="_remember_me" checked/>
+                                Rester connecter
+                            </label>
+        
+                            <div class="flex mx-5 justify-end">Pas encore inscrit? <a href="{{ path('app_register') }}" class="">
+                                Inscription</a></div>
+        
+                            <button type="submit" class="bg-blue-600 rounded-xl text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8 justify-end">
+                                Connexion
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body> #}
+    
 {% endblock %}
