@@ -1,39 +1,7 @@
 @font-face {
-  font-family: 'Parisienne';
-  src:
-    local('Parisienne'),
-    url('../fonts/Parisienne-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Adrenalines';
-  src:
-    local('Adrenalines'),
-    url('../fonts/Adrenalines.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
   font-family: 'Playball';
   src:
     url('../fonts/Playball.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-}
-
-@font-face {
-  font-family: 'Fargo';
-  src:
-    url('../fonts/Fargo.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@layer components {
-  .elSticky {
-      @apply sticky top-0 w-full bg-banner;
-  }
 }

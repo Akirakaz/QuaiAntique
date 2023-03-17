@@ -7,12 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        parisienne: ["Parisienne", "sans-serif"],
-        adrenalines: ["Adrenalines", "sans-serif"],
         playball: ["Playball", "sans-serif"],
-      },
-      backgroundImage: {
-        'banner': "url('./assets/img/top-banner.jpg')",
       },
       zIndex: {
         1: "1",
