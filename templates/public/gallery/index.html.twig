@@ -1,0 +1,62 @@
+{% extends 'public/base.html.twig' %}
+
+{% block title %}Carte{% endblock %}
+
+{% block body %}
+    
+        <main class="mx-auto w-full max-w-7xl flex-wrap px-4 ">
+           
+            <h1 class="my-10 text-5xl text-center font-playball mb-10">Galerie</h1>
+                
+            <section class="overflow-hidden text-neutral-700">
+                <div class="container mx-auto px-5 py-2 lg:px-32 lg:pt-24">
+                  <div class="-m-1 flex flex-wrap md:-m-2">
+                    {% for image in images %}
+                    <div class="flex w-1/2 flex-wrap">
+                      <div class="w-1/2 p-1 md:p-2">
+                        <img
+                          alt="{{image.title}}"
+                          class="block h-full w-full rounded-lg object-cover object-center hover:scale-110"
+                          src="{{ vich_uploader_asset(image) }}" />
+                      </div>
+                      <div class="w-1/2 p-1 md:p-2">
+                        <img
+                          alt="gallery"
+                          class="block h-full w-full rounded-lg object-cover object-center"
+                          src="https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(72).webp" />
+                      </div>
+                      <div class="w-full p-1 md:p-2">
+                        <img
+                          alt="gallery"
+                          class="block h-full w-full rounded-lg object-cover object-center"
+                          src="https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp" />
+                      </div>
+                    </div>
+                    <div class="flex w-1/2 flex-wrap">
+                      <div class="w-full p-1 md:p-2">
+                        <img
+                          alt="gallery"
+                          class="block h-full w-full rounded-lg object-cover object-center"
+                          src="https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(74).webp" />
+                      </div>
+                      <div class="w-1/2 p-1 md:p-2">
+                        <img
+                          alt="gallery"
+                          class="block h-full w-full rounded-lg object-cover object-center"
+                          src="https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(75).webp" />
+                      </div>
+                      <div class="w-1/2 p-1 md:p-2">
+                        <img
+                          alt="gallery"
+                          class="block h-full w-full rounded-lg object-cover object-center"
+                          src="https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(77).webp" />
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </section>
+        </main>
+
+
+{% endblock %}
