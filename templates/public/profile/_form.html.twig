@@ -1,0 +1,41 @@
+<div class="mx-auto mt-8 w-full px-4 md:w-3/4 lg:w-1/2">
+    {{ form_start(form) }}
+    <div class="mt-4 flex flex-wrap gap-8 md:flex-nowrap">
+        <div class="w-full md:w-1/2">
+            {{ form_row(form.bookingName) }}
+        </div>
+        <div class="w-full md:w-1/2">
+            {{ form_row(form.guests) }}
+        </div>
+    </div>
+
+    <div class="mt-4 flex flex-wrap gap-8 md:flex-nowrap">
+        <div class="w-full lg:w-1/2">
+            {{ form_row(form.email) }}
+        </div>
+        <div class="w-full lg:w-1/2">
+            {{ form_row(form.phone) }}
+        </div>
+    </div>
+    <div class="mt-4">
+        {{ form_row(form.allergies) }}
+    </div>
+
+    <div class="mt-16" x-data="{ changepass: false }">
+        <button @click="changepass = !changepass" type="button" class="self-center rounded bg-gray-200 px-4 py-2 hover:bg-slate-300">Modifier mon mot de passe</button>
+        <div class="mt-4 flex flex-wrap gap-8 md:flex-nowrap">
+            <div id="profile_password_fields" class="w-full rounded border p-4" :class="changepass ? 'bg-red-100' : 'bg-gray-100 pointer-events-none'">
+                <span class="font-bold text-red-500" x-text="changepass ? 'Mode édition' : ''"></span>
+                <div class="mt-4 flex flex-wrap gap-8 md:flex-nowrap [&>div]:w-full">
+                    {{ form_row(form.plainPassword) }}
+                    {{ form_errors(form.plainPassword) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex justify-between flex-wrap md:flex-row-reverse mt-8 gap-8">
+        <button class="rounded px-4 py-2 bg-slate-200 hover:bg-slate-300 w-full md:w-1/3">{{ button_label }}</button>
+    </div>
+    {{ form_end(form) }}
+</div>

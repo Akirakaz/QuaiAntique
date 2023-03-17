@@ -2,23 +2,21 @@
 
 namespace App\Twig;
 
-use App\Entity\Opening;
-use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\OpeningRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Routing\RouterInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class TwigExtension extends AbstractExtension
 {
-    private ManagerRegistry $registry;
-    private RequestStack    $request;
+    private RequestStack      $request;
+    private OpeningRepository $openingRepository;
 
-    public function __construct(ManagerRegistry $registry, RequestStack $requestStack,)
+    public function __construct(OpeningRepository $openingRepository, RequestStack $requestStack,)
     {
-        $this->registry = $registry;
-        $this->request  = $requestStack;
+        $this->openingRepository = $openingRepository;
+        $this->request           = $requestStack;
     }
 
     public function getFilters(): array
@@ -26,6 +24,7 @@ class TwigExtension extends AbstractExtension
         return [
             new TwigFilter('boolIconFormater', [$this, 'boolIconFormater']),
             new TwigFilter('renameDay', [$this, 'renameDay']),
+            new TwigFilter('formatPhone', [$this, 'formatPhoneNumber']),
         ];
     }
 
@@ -72,11 +71,16 @@ class TwigExtension extends AbstractExtension
         return null;
     }
 
+    function formatPhoneNumber(?string $phoneNumber): string
+    {
+        return $phoneNumber ? implode(' ', str_split($phoneNumber, 2)) : '--';
+    }
+
     //-- Functions
 
     public function getOpeningDays(): array
     {
-        $openingHoursRepository = $this->registry->getRepository(Opening::class);
+        $openingHoursRepository = $this->openingRepository;
         return $openingHoursRepository->findAll();
     }
 

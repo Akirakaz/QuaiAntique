@@ -1,0 +1,33 @@
+{% extends 'public/base.html.twig' %}
+
+
+{% block body %}
+    <main class="mx-auto max-w-7xl py-16">
+        <h1 class="text-center text-5xl font-semibold font-playball">Mon compte</h1>
+
+        <div class="mt-8 flex flex-wrap gap-4 px-4">
+            <aside class="rounded-md bg-gray-100 p-4 shadow lg:w-1/4 border">
+                <h2 class="self-center text-2xl">Mes informations</h2>
+
+                <div class="mt-4 text-gray-600">
+                    <p><span class="inline-block w-16 text-sm font-semibold text-inherit">Nom: </span> {{ user.bookingName }}</p>
+                    <p><span class="inline-block w-16 text-sm font-semibold text-inherit">Email: </span> {{ user.email }}</p>
+                    <p><span class="inline-block w-16 text-sm font-semibold text-inherit">Tel: </span> {{ user.phone|formatPhone }}</p>
+                    <p><span class="inline-block w-16 text-sm font-semibold text-inherit">Convives: </span> {{ user.guests }} <span class="text-xs">(par défaut)</span></p>
+                </div>
+
+
+                <div class="mt-4">
+                    <p class="text-sm font-semibold">Allergies:</p>
+                    <p class="text-gray-600">{{ user.allergies }}</p>
+                </div>
+                <div class="mt-4 flex justify-end">
+                    <a href="{{ path('app_profile_edit') }}" class="rounded border border-gray-300 bg-gray-200 px-4 py-2 transition hover:text-slate-50 hover:bg-slate-800">Modifier</a>
+                </div>
+            </aside>
+            <section class="flex-grow rounded-md bg-gray-50 p-4 shadow border">
+                <h2 class="text-2xl text-gray">Mes réservations</h2>
+            </section>
+        </div>
+    </main>
+{% endblock %}
