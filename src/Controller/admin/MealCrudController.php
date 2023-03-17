@@ -38,6 +38,8 @@ class MealCrudController extends AbstractController
                 ? 'app_admin_meal_new'
                 : 'app_admin_meal_index';
 
+            $this->addFlash('succès', "Le plat a bien été enregistrée.");
+
             return $this->redirectToRoute($nextAction);
         }
 
@@ -56,6 +58,8 @@ class MealCrudController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $mealRepository->save($meal, true);
 
+            $this->addFlash('succès', "Le plat a bien été mis à jour.");
+
             return $this->redirectToRoute('app_admin_meal_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -70,6 +74,8 @@ class MealCrudController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$meal->getId(), $request->request->get('_token'))) {
             $mealRepository->remove($meal, true);
+
+            $this->addFlash('succès', "Le plat a bien été supprimé.");
         }
 
         return $this->redirectToRoute('app_admin_meal_index', [], Response::HTTP_SEE_OTHER);

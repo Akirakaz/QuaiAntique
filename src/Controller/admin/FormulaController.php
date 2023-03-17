@@ -38,6 +38,8 @@ class FormulaController extends AbstractController
                 ? 'app_admin_formula_new'
                 : 'app_admin_formula_index';
 
+            $this->addFlash('succès', "La formule a bien été enregistrée.");
+
             return $this->redirectToRoute($nextAction);
         }
 
@@ -56,6 +58,8 @@ class FormulaController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $formulaRepository->save($formula, true);
 
+            $this->addFlash('succès', "La formule a bien été mise à jour.");
+
             return $this->redirectToRoute('app_admin_formula_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -70,6 +74,8 @@ class FormulaController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$formula->getId(), $request->request->get('_token'))) {
             $formulaRepository->remove($formula, true);
+
+            $this->addFlash('succès', "La formule a bien été supprimée.");
         }
 
         return $this->redirectToRoute('app_admin_formula_index', [], Response::HTTP_SEE_OTHER);
