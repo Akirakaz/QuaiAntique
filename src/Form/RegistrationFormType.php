@@ -24,7 +24,8 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('bookingName', TextType::class, [
-                'label'       => 'Nom pour la réservation',
+                'label'       => 'Nom de réservation',
+                'attr'        => ['placeholder' => 'Dupont'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'profile.booking_name_not_blank',
@@ -33,6 +34,8 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'required'    => true,
+                'label'       => 'Email',
+                'attr'        => ['placeholder' => 'jean@dupont.fr'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'email.not_blank',
@@ -43,6 +46,8 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('phone', TelType::class, [
+                'label'       => 'Téléphone',
+                'attr'        => ['placeholder' => '0123456789'],
                 'constraints' => [
                     new Regex('/^[0]{1}[0-9]{9}$/', 'profile.incorrect_phone'),
                 ],
@@ -67,10 +72,10 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'mapped'          => false,
                 'required'        => true,
-                'attr'            => ['autocomplete' => false],
+                'options'         => ['attr' => ['class' => 'w-full bg-white/60']],
                 'type'            => PasswordType::class,
                 'invalid_message' => 'password.not_match',
-                'first_options'   => ['label' => 'Mot de passe'],
+                'first_options'   => ['label' => 'Mot de passe',],
                 'second_options'  => ['label' => 'Répétez le mot de passe'],
                 'constraints'     => [
                     new NotBlank([

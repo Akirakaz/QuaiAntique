@@ -39,3 +39,8 @@ select, input, textarea {
     @apply text-blue-600;
   }
 }
+
+
+.inscription-bg {
+  background-image: url('../img/bg/inscription.webp');
+}

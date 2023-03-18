@@ -18,6 +18,7 @@ module.exports = {
       },
       maxWidth: {
         '8xl': '90rem',
+        'screen-fhd': '1920px'
       },
     },
   },

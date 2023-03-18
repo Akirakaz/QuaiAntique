@@ -1,45 +1,37 @@
 {% extends 'public/base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block pageTitle %}Inscription{% endblock %}
 
 {% block body %}
-<body class="bg-white font-family-karla h-screen">
-
-    <div class="w-full flex flex-wrap">
-        <div class="w-1/2">
-            <img class="object-cover w-full h-screen hidden md:block rounded" src="{{ asset('assets/img/inscriptionMB.jpg') }}">
-        </div>
-        <div class="w-full md:w-1/2 flex flex-col">
-
-            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
-                <p class="text-center text-5xl font-playball">Inscription</p>
-                <form class="flex flex-col pt-3 md:pt-8" onsubmit="event.preventDefault();">
-                    {{ form_start(registrationForm) }}
-                    <div class="flex flex-col pt-4">
-                        {{ form_row(registrationForm.email) }}
+    <main class="flex-grow bg-cover bg-center bg-no-repeat inscription-bg">
+        <section class="mx-auto flex h-full flex-row-reverse flex-col items-end justify-center p-8 max-w-8xl">
+            <div class="w-full rounded-xl bg-white/60 p-4 shadow backdrop-blur-md md:w-1/2 xl:w-1/3">
+                {{ form_start(registrationForm) }}
+                <div class="flex flex-col pt-4">
+                    {{ form_row(registrationForm.email, { 'attr': {'class': 'w-full bg-white/60 mt-1'}}) }}
+                </div>
+                <div class="flex gap-4 flex flex-wrap sm:flex-nowrap [&>*]:w-full mt-4">
+                    <div class="w-1/2">
+                        {{ form_row(registrationForm.bookingName, { 'attr': {'class': 'w-full bg-white/60 mt-1'}}) }}
                     </div>
-                    <div class="flex flex-col pt-4">
-                        {{ form_row(registrationForm.plainPassword) }}
+                    <div class="w-1/2">
+                        {{ form_row(registrationForm.phone, { 'attr': {'class': 'w-full bg-white/60 mt-1'}}) }}
                     </div>
-                    <div class="flex flex-col pt-4">
-                        {{ form_row(registrationForm.allergies) }}
-                    </div>
-                    <div class="flex flex-col pt-4">
-                        {{ form_row(registrationForm.guests) }}
-                    </div>
-                    <div class="flex">
-                        <input type="submit" value="Valider" class="bg-blue-600 text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8 w-40 mb-5">
-                    </div>
-                    {{ form_end(registrationForm) }}
-                </form>
+                </div>
+                <div class="flex flex-col pt-4">
+                    {{ form_row(registrationForm.guests, { 'attr': {'class': 'w-full bg-white/60 mt-1'}}) }}
+                </div>
+                <div class="flex flex-col pt-4">
+                    {{ form_row(registrationForm.allergies, { 'attr': {'class': 'w-full bg-white/60 mt-1'}}) }}
+                </div>
+                <div class="pt-4 gap-4 flex flex-wrap sm:flex-nowrap [&>*]:w-full">
+                    {{ form_row(registrationForm.plainPassword) }}
+                </div>
+                <div class="flex justify-end pt-4">
+                    <input type="submit" value="S'enregistrer" class="mt-8 mb-5 w-40 bg-white/60 p-2 text-lg font-semibold text-black hover:bg-white cursor-pointer">
+                </div>
+                {{ form_end(registrationForm) }}
             </div>
-            <div class="flex justify-end mr-10 mb-10">
-                Déjà inscrit ? 
-                <a href="{{ path('app_login') }}" class="ml-3 uppercase font-semibold">
-                    Connexion
-                </a>
-            </div>
-        </div>
-    </div>
-</body>
+        </section>
+    </main>
 {% endblock %}
