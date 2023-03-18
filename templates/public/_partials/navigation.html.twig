@@ -1,108 +1,129 @@
-<section 
-	style="background-image: url( {{asset('assets/img/top-banner.jpg')}} ); min-height: 10vh;"
-  class="block pb-10 text-white bg-center bg-no-repeat bg-cover">
-	<div id="logo" class="flex-row justify-center">
-		<a class="text-3xl font-bold leading-none m-10" href="{{ path('app_home') }}">
-			<img class="h-16 w-full" src="{{ asset('assets/img/logo.svg') }}" alt="Logo Quai Antique">
-		</a>
-	</div>
-<nav id="navSticky" class=" px-4 py-4 flex justify-center items-center h-24">
-	<header class="flex">
-		
-			<div class="md:hidden w-full">
-				<div class="flex">
-					<p class="text-white hover:text-gray-200 font-playball text-2xl pt-1">Menu</p>
-					<button class="navbar-burger text-white p-3 justify-end">
-						<svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-							<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-						</svg>
-					</button>
-				</div>
-			</div>
-			<div class=" justify-end py-5 border-y border-slate-300">
-				<ul class=" hidden md:flex md:mx-auto md:items-center md:w-auto md:space-x-4 pr-3">
-					<li>
-						<a class=" text-white hover:text-gray-200 font-playball text-2xl" href="{{ path('app_home') }}">Home</a>
-					</li>
-					<li>
-						<a class=" text-white hover:text-gray-200 font-playball text-2xl" href="{{ path('app_meal') }}">Carte</a>
-					</li>
-					<li>
-						<a class=" text-white hover:text-gray-200 font-playball text-2xl" href="{{ path('app_formula') }}">Menus</a>
-					</li>
-					<li>
-						<a class=" text-white hover:text-gray-200 font-playball text-2xl" href="{{ path('app_booking') }}">Réservation</a>
-					</li>
-					<li>
-						<a class=" text-white hover:text-gray-200 font-playball text-2xl" href="{{ path('app_login') }}">Connexion</a>
-					</li>
-					<li>
-						<a class=" text-white hover:text-gray-200 font-playball text-2xl" href="{{ path('app_register') }}">Inscription</a>
-					</li>
-					<li>
-						<a class=" text-white hover:text-gray-200 font-playball text-2xl" href="{{ path('app_contact') }}">Contact</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
-		<div class="navbar-menu relative z-50 hidden ">
-			<div class="navbar-backdrop fixed inset-0 bg-gray-900 opacity-70 "></div>
-			<nav class="fixed top-0 left-0 bottom-0 flex flex-col w-2/5 max-w-sm py-6 px-6 bg-black opacity-70 border-r overflow-y-auto ">
-				<div class="flex items-center mb-8">
-					<a class="text-3xl font-bold leading-none rounded bg-white" href="{{ path('app_home') }}">
-						<img class="h-16 w-full p-2" src="{{ asset('assets/img/logo.svg') }}" alt="Logo Quai Antique">
-					</a>
-					<button class="navbar-close">
-						<svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-						</svg>
-					</button>
-				</div>
-				<div>
-					<ul>
-						<li class="mb-1">
-							<a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/">Home</a>
-						</li>
-						<li class="mb-1">
-							<a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/meals">Carte</a>
-						</li>
-						<li class="mb-1">
-							<a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/menus">Menus</a>
-						</li>
-						<li class="mb-1">
-							<a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/booking">Réservation</a>
-						</li>
-						<li class="mb-1">
-							<a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/login">Connexion</a>
-						</li>
-						<li class="mb-1">
-							<a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/login">Inscription</a>
-						</li>
-						<li class="mb-1">
-							<a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/contact">Contact</a>
-						</li>
-					</ul>
-				</div>
-			</nav>
-		</div>
-	</header>
-	</div>
+{% set menuLinks = [
+    {
+        'title': 'Accueil',
+        'path': 'app_home'
+    },
+    {
+        'title': 'La carte',
+        'path': 'app_meal'
+    },
+    {
+        'title': 'Menus',
+        'path': 'app_formula'
+    },
+    {
+        'title': 'Réservation',
+        'path': 'app_booking'
+    },
+    {
+        'title': 'Contact',
+        'path': 'app_contact'
+    },
+] %}
+<section
+        style="background-image: url( {{ asset('assets/img/top-banner.jpg') }} );"
+        class="block pb-10 text-white bg-center bg-no-repeat bg-cover">
+    <div id="logo" class="flex-row justify-center">
+        <a class="text-3xl font-bold leading-none m-10" href="{{ path('app_home') }}">
+            <img class="h-16 w-full" src="{{ asset('assets/img/logo.svg') }}" alt="Logo Quai Antique">
+        </a>
+    </div>
+    <nav class=" px-4 py-4 flex justify-center items-center h-24">
+        <header class="flex">
+            <div class="md:hidden w-full">
+                <div class="flex">
+                    <p class="text-white hover:text-gray-200 font-playball text-2xl pt-1">Menu</p>
+                    <button class="navbar-burger text-white p-3 justify-end">
+                        <svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class=" justify-end py-5 border-y border-slate-300">
+                <ul class=" hidden md:flex md:mx-auto md:items-center md:w-auto md:space-x-4 pr-3 font-playball">
+                    {% for link in menuLinks %}
+                        <li>
+                            <a class=" text-white hover:text-gray-200 text-2xl" href="{{ path(link.path) }}">{{ link.title }}</a>
+                        </li>
+                    {% endfor %}
+                    {% if not is_granted('IS_AUTHENTICATED') %}
+                        <li>
+                            <a class=" text-white hover:text-gray-200 text-2xl" href="{{ path('app_register') }}">Inscription</a>
+                        </li>
+                        <li>
+                            <a class=" text-white hover:text-gray-200 text-2xl" href="{{ path('app_login') }}">Connexion</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a class=" text-white hover:text-gray-200 text-2xl" href="{{ path('app_profile_index') }}">Mon compte</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li>
+                            <a class=" text-white hover:text-gray-200 text-2xl" href="{{ path('app_admin_index') }}">Administration</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </header>
+    </nav>
+    <div class="navbar-menu relative z-50 hidden ">
+        <div class="navbar-backdrop fixed inset-0 bg-gray-900 opacity-70 "></div>
+        <nav class="fixed top-0 left-0 bottom-0 flex flex-col w-2/5 max-w-sm py-6 px-6 bg-black opacity-70 border-r overflow-y-auto ">
+            <div class="flex items-center mb-8">
+                <a class="text-3xl font-bold leading-none rounded bg-white" href="{{ path('app_home') }}">
+                    <img class="h-16 w-full p-2" src="{{ asset('assets/img/logo.svg') }}" alt="Logo Quai Antique">
+                </a>
+                <button class="navbar-close">
+                    <svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div>
+                <ul>
+                    <li class="mb-1">
+                        <a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/">Home</a>
+                    </li>
+                    <li class="mb-1">
+                        <a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/meals">Carte</a>
+                    </li>
+                    <li class="mb-1">
+                        <a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/menus">Menus</a>
+                    </li>
+                    <li class="mb-1">
+                        <a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/booking">Réservation</a>
+                    </li>
+                    <li class="mb-1">
+                        <a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/login">Connexion</a>
+                    </li>
+                    <li class="mb-1">
+                        <a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/login">Inscription</a>
+                    </li>
+                    <li class="mb-1">
+                        <a class="block p-4 text-2xl font-playball text-white hover:bg-blue-50 hover:text-indigo-900 rounded" href="/contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 </section>
 
-<script >
-  document.addEventListener('DOMContentLoaded', function() {
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
     // open
     const burger = document.querySelectorAll('.navbar-burger');
     const menu = document.querySelectorAll('.navbar-menu');
 
     if (burger.length && menu.length) {
-        for (var i = 0; i < burger.length; i++) {
-            burger[i].addEventListener('click', function() {
-                for (var j = 0; j < menu.length; j++) {
-                    menu[j].classList.toggle('hidden');
-                }
-            });
-        }
+      for (var i = 0; i < burger.length; i++) {
+        burger[i].addEventListener('click', function () {
+          for (var j = 0; j < menu.length; j++) {
+            menu[j].classList.toggle('hidden');
+          }
+        });
+      }
     }
 
     // close
@@ -110,35 +131,35 @@
     const backdrop = document.querySelectorAll('.navbar-backdrop');
 
     if (close.length) {
-        for (var i = 0; i < close.length; i++) {
-            close[i].addEventListener('click', function() {
-                for (var j = 0; j < menu.length; j++) {
-                    menu[j].classList.toggle('hidden');
-                }
-            });
-        }
+      for (var i = 0; i < close.length; i++) {
+        close[i].addEventListener('click', function () {
+          for (var j = 0; j < menu.length; j++) {
+            menu[j].classList.toggle('hidden');
+          }
+        });
+      }
     }
 
     if (backdrop.length) {
-        for (var i = 0; i < backdrop.length; i++) {
-            backdrop[i].addEventListener('click', function() {
-                for (var j = 0; j < menu.length; j++) {
-                    menu[j].classList.toggle('hidden');
-                }
-            });
-        }
+      for (var i = 0; i < backdrop.length; i++) {
+        backdrop[i].addEventListener('click', function () {
+          for (var j = 0; j < menu.length; j++) {
+            menu[j].classList.toggle('hidden');
+          }
+        });
+      }
     }
-});
+  });
 </script>
 <script>
   let stickyElt = document.getElementById("navSticky");
-	let headerElt = document.getElementById("logo");
+  let headerElt = document.getElementById("logo");
 
-	window.addEventListener("scroll", function () {
-			if (window.scrollY >= (navSticky.offsetHeight + logo.style.height)) {
-				navSticky.classList.add("elSticky");
-	} else if (window.scrollY < (navSticky.offsetHeight + logo.style.height)) {
-		navSticky.classList.remove("elSticky");
-			}
-	});
+  window.addEventListener("scroll", function () {
+    if (window.scrollY >= (navSticky.offsetHeight + logo.style.height)) {
+      navSticky.classList.add("elSticky");
+    } else if (window.scrollY < (navSticky.offsetHeight + logo.style.height)) {
+      navSticky.classList.remove("elSticky");
+    }
+  });
 </script>
