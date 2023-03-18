@@ -6,14 +6,14 @@
     
         <main class="mx-auto w-full max-w-7xl flex-wrap px-4 ">
            
-            <h1 class="my-10 text-5xl text-center font-playball mb-10">Carte</h1>
-                <div class="mt-4 min-w-full">
-                    <h3 class="flex-row text-start text-3xl font-playball ml-5 underline underline-offset-4 mt-4">Entrée</h3>
-                    <div class="flex flex-row justify-start">
+            <h1 class="mt-10 text-5xl text-center font-playball mb-20">Carte</h1>
+                <div class="mt-4 min-w-full ">
+                    <h3 class="flex-row text-start text-3xl font-playball mx-10 underline underline-offset-4 mt-4 ">Entrée</h3>
+                    <div class="flex flex-row justify-start ">
                         {% for meal in meals %}
                             {% if meal.category.id == 1 %}
                                 <div class="justify-start flex">
-                                    <div class="flex-col p-2 text-sm text-gray-700 font-bold">{{ meal.title }}</div>
+                                    <div class="flex-col p-2 text-gray-700 font-bold text-lg">{{ meal.title }}</div>
                                         <div class="flex-col p-2 text-sm text-gray-500">{{ meal.description }}</div>
                                         <div class="flex-col p-2 text-sm text-gray-500">{{ meal.price|format_currency('EUR') }}</div>
                                     </div>
@@ -27,12 +27,12 @@
                         {% endfor %}
                     </div>
                     
-                    <h3 class="flex-row text-end text-3xl font-playball mr-5 underline underline-offset-4 mt-4">Plats</h3>
+                    <h3 class="flex-row text-end text-3xl font-playball mx-10 underline underline-offset-4 mt-4">Plats</h3>
                     <div class="flex flex-row justify-end">
                         {% for meal in meals %}
                             {% if meal.category.id == 2 %}
                                 <div class="justify-end flex">
-                                    <div class="flex-col p-2 text-sm text-gray-700 font-bold">{{ meal.title }}</div>
+                                    <div class="flex-col p-2 text-gray-700 font-bold text-lg">{{ meal.title }}</div>
                                         <div class="flex-col p-2 text-sm text-gray-500">{{ meal.description }}</div>
                                         <div class="flex-col p-2 text-sm text-gray-500">{{ meal.price|format_currency('EUR') }}</div>
                                     </div>
@@ -45,12 +45,12 @@
                             </tr>
                         {% endfor %}
                     </div>
-                    <h3 class="flex-row text-start text-3xl font-playball ml-5 underline underline-offset-4 mt-4">Dessert</h3>
+                    <h3 class="flex-row text-start text-3xl font-playball mx-10 underline underline-offset-4 mt-4">Dessert</h3>
                     <div class="flex flex-row justify-start">
                         {% for meal in meals %}
                             {% if meal.category.id == 3 %}
                                 <div class="justify-start flex">
-                                    <div class="flex-col p-2 text-sm text-gray-700 font-bold">{{ meal.title }}</div>
+                                    <div class="flex-col p-2 text-gray-700 font-bold text-lg">{{ meal.title }}</div>
                                         <div class="flex-col p-2 text-sm text-gray-500">{{ meal.description }}</div>
                                         <div class="flex-col p-2 text-sm text-gray-500">{{ meal.price|format_currency('EUR') }}</div>
                                     </div>
