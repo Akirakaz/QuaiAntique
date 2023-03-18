@@ -44,3 +44,7 @@ select, input, textarea {
 .inscription-bg {
   background-image: url('../img/bg/inscription.webp');
 }
+
+.connexion-bg {
+  background-image: url('../img/bg/connexion.webp');
+}
