@@ -1,0 +1,36 @@
+{% extends 'public/base.html.twig' %}
+
+{% block title %}Hello MenusController!{% endblock %}
+
+{% block body %}
+<main class="mx-auto w-full max-w-7xl flex-wrap px-4 ">
+           
+    <h1 class="mt-10 text-5xl text-center font-playball mb-20">Menus</h1>
+        <div class="top-64 right-0 fixed">
+            <a href="{{path('app_booking')}}">
+                <button class="bg-slate-800 rounded-lg text-white w-8" type="button">
+                    R</br>é</br>s</br>e</br>r</br>v</br>e</br>r
+                </button>
+            </a>
+        </div>
+        <div class="mt-4 min-w-full ">
+            <h3 class="flex-row text-start text-3xl font-playball mx-10 underline underline-offset-4 mt-4 ">Menu A</h3>
+            <div class="flex flex-row justify-start ">
+                {% for formula in formulas %}
+                    {# {% if fomula.menu == 'Menu Gourmand' %} #}
+                        <div class="justify-start flex">
+                            <div class="flex-col p-2 text-gray-700 font-bold text-lg">{{ formula.title }}</div>
+                                <div class="flex-col p-2 text-sm text-gray-500">{{ formula.description }}</div>
+                                <div class="flex-col p-2 text-sm text-gray-500">{{ formula.price|format_currency('EUR') }}</div>
+                            </div>
+                        </div>
+                    {# {% endif %} #}
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center p-4">Aucun plat enregistré</td>
+                    </tr>
+                {% endfor %}
+            </div>
+        </div>
+</main>
+{% endblock %}
