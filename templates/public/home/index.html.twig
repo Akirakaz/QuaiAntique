@@ -6,13 +6,6 @@
 <main class="mx-auto w-full max-w-7xl flex-wrap px-4 ">
            
     <h1 class="mt-10 text-5xl text-center font-playball mb-5">Notre restaurant</h1>
-    <div class="top-64 right-0 fixed">
-        <a href="{{path('app_booking')}}">
-            <button class="bg-slate-800 rounded-lg text-white w-8" type="button">
-                R</br>é</br>s</br>e</br>r</br>v</br>e</br>r
-            </button>
-        </a>
-    </div>
     <div class="flex bg-slate-100 rounded  justify-center shadow-lg">
         <p class="m-5 ">
             A deux pas du centre historique de Chambéry, du Carré Curial, du Théâtre Malraux et de la 
@@ -38,5 +31,6 @@
           </div>
         </div>
       </section>
+    {% include 'public/_partials/bookingside.html.twig' %}
 </main>
 {% endblock %}
