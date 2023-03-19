@@ -12,7 +12,7 @@
                         <h2 class="border-b-4 border-b text-4xl font-playball">{{ menu.title }}</h2>
                         <div class="mt-8 grid grid-cols-1 items-center gap-4 md:grid-cols-2 lg:grid-cols-3">
                             {% for formula in menu.formulas %}
-                                <div class="flex h-full flex-col border p-4 shadow-md">
+                                <div class="flex h-full flex-col border p-4 shadow-md hover:shadow-lg transition">
                                     <h3 class="text-center text-3xl font-playball"><a class="transition hover:text-gray-500" href="{{ path('app_booking') }}">{{ formula.title }}</a></h3>
                                     <p class="mt-4 flex-grow">{{ formula.description }}</p>
                                     <div class="mt-8 flex self-center">
