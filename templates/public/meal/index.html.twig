@@ -3,69 +3,53 @@
 {% block title %}Carte{% endblock %}
 
 {% block body %}
-    
-        <main class="mx-auto w-full max-w-7xl flex-wrap px-4 ">
-           
-            <h1 class="mt-10 text-5xl text-center font-playball mb-20">Carte</h1>
-                <div class="mt-4 min-w-full ">
-                    <h3 class="flex-row text-start text-3xl font-playball mx-10 underline underline-offset-4 mt-4 ">Entrée</h3>
-                    <div class="flex flex-row justify-start ">
-                        {% for meal in meals %}
-                            {% if meal.category.id == 1 %}
-                                <div class="justify-start flex">
-                                    <div class="flex-col p-2 text-gray-700 font-bold text-lg">{{ meal.title }}</div>
-                                        <div class="flex-col p-2 text-sm text-gray-500">{{ meal.description }}</div>
-                                        <div class="flex-col p-2 text-sm text-gray-500">{{ meal.price|format_currency('EUR') }}</div>
-                                    </div>
-                                </div>
-                                
-                            {% endif %}
-                        {% else %}
-                            <tr>
-                                <td colspan="6" class="text-center p-4">Aucun plat enregistré</td>
-                            </tr>
-                        {% endfor %}
-                    </div>
-                    
-                    <h3 class="flex-row text-end text-3xl font-playball mx-10 underline underline-offset-4 mt-4">Plats</h3>
-                    <div class="flex flex-row justify-end">
-                        {% for meal in meals %}
-                            {% if meal.category.id == 2 %}
-                                <div class="justify-end flex">
-                                    <div class="flex-col p-2 text-gray-700 font-bold text-lg">{{ meal.title }}</div>
-                                        <div class="flex-col p-2 text-sm text-gray-500">{{ meal.description }}</div>
-                                        <div class="flex-col p-2 text-sm text-gray-500">{{ meal.price|format_currency('EUR') }}</div>
-                                    </div>
-                                </div>
-                                
-                            {% endif %}
-                        {% else %}
-                            <tr>
-                                <td colspan="6" class="text-center p-4">Aucun plat enregistré</td>
-                            </tr>
-                        {% endfor %}
-                    </div>
-                    <h3 class="flex-row text-start text-3xl font-playball mx-10 underline underline-offset-4 mt-4">Dessert</h3>
-                    <div class="flex flex-row justify-start">
-                        {% for meal in meals %}
-                            {% if meal.category.id == 3 %}
-                                <div class="justify-start flex">
-                                    <div class="flex-col p-2 text-gray-700 font-bold text-lg">{{ meal.title }}</div>
-                                        <div class="flex-col p-2 text-sm text-gray-500">{{ meal.description }}</div>
-                                        <div class="flex-col p-2 text-sm text-gray-500">{{ meal.price|format_currency('EUR') }}</div>
-                                    </div>
-                                </div>
-                                
-                            {% endif %}
-                        {% else %}
-                            <tr>
-                                <td colspan="6" class="text-center p-4">Aucun plat enregistré</td>
-                            </tr>
-                        {% endfor %}
-                    </div>
-                    </tbody>
+    <main class="flex-grow py-16">
+        <h1 class="mb-16 text-center text-5xl font-playball">La carte</h1>
+
+        <div class="mx-auto flex max-w-5xl flex-col gap-16 px-4">
+            <div>
+                <h2 class="border-b-4 border-b text-3xl font-playball">Entrées</h2>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {% for meal in meals %}
+                        {% if meal.category == 0 %}
+                            <div class="flex flex-col rounded-lg border p-4 shadow-md">
+                                <h3 class="text-xl font-semibold"><a class="hover:text-gray-500 transition" href="{{ path('app_booking') }}">{{ meal.title }}</a></h3>
+                                <p class="mt-2 flex-grow text-gray-600">{{ meal.description }}</p>
+                                <p class="text-right text-sm font-semibold text-gray-500">{{ meal.price|format_currency('EUR') }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-        </main>
-
-
+            </div>
+            <div>
+                <h2 class="border-b-4 text-3xl font-playball">Plats</h2>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ">
+                    {% for meal in meals %}
+                        {% if meal.category == 1 %}
+                            <div class="flex flex-col rounded-lg border p-4 shadow-md">
+                                <h3 class="text-xl font-semibold"><a class="hover:text-gray-500 transition" href="{{ path('app_booking') }}">{{ meal.title }}</a></h3>
+                                <p class="mt-2 flex-grow text-gray-600">{{ meal.description }}</p>
+                                <p class="text-right text-sm font-semibold text-gray-500">{{ meal.price|format_currency('EUR') }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <h2 class="border-b-4 text-3xl font-playball">Desserts</h2>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ">
+                    {% for meal in meals %}
+                        {% if meal.category == 2 %}
+                            <div class="flex flex-col rounded-lg border p-4 shadow-md">
+                                <h3 class="text-xl font-semibold"><a class="hover:text-gray-500 transition" href="{{ path('app_booking') }}">{{ meal.title }}</a></h3>
+                                <p class="mt-2 flex-grow text-gray-600">{{ meal.description }}</p>
+                                <p class="text-right text-sm font-semibold text-gray-500">{{ meal.price|format_currency('EUR') }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% include 'public/_partials/bookingside.html.twig' %}
+    </main>
 {% endblock %}
