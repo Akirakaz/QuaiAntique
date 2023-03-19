@@ -20,6 +20,9 @@ module.exports = {
         '8xl': '90rem',
         'screen-fhd': '1920px'
       },
+      screens: {
+        'xs': '414px',
+      }
     },
   },
   plugins: [require("@tailwindcss/forms")],
