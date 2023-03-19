@@ -56,3 +56,9 @@ select, input, textarea {
     @apply w-6 ml-1 content-[url("../img/icons/plus.svg")];
   }
 }
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 4px 6px theme('colors.black');
+  }
+}
