@@ -3,34 +3,39 @@
 {% block pageTitle %}Accueil{% endblock %}
 
 {% block body %}
-<main class="mx-auto w-full max-w-7xl flex-wrap px-4 ">
-           
-    <h1 class="mt-10 text-5xl text-center font-playball mb-5">Notre restaurant</h1>
-    <div class="flex bg-slate-100 rounded  justify-center shadow-lg">
-        <p class="m-5 ">
-            A deux pas du centre historique de Chambéry, du Carré Curial, du Théâtre Malraux et de la 
-            statue des elephants, le chef Arnaud Michant et son équipe vous  propose un autre regard sur 
-            nos terroirs.</br>
-            Au Quai Antique, venez déguster une cuisine savoureuse et contemporaine inspirée des saisons et 
-            des produits locaux.</br>
-            Les produits frais sont toujours à l’honneur, la carte évoluant tout au long de l’année.
-        </p>
-    </div>
-    
-        
-    <h1 class="mt-10 text-4xl text-center font-playball">Nos créations</h1>
-    <section class="overflow-hidden text-neutral-700">
-        <div class="container mx-auto px-5 py-2 lg:px-28 lg:pt-12">
-          <div class="-m-1 flex flex-wrap md:-m-2">
-            {% for image in images %}
-                <div class="w-full h-72 relative m-5">
-                    <div class="absolute inset-0 bg-cover bg-center z-0 rounded-lg " 	style="background-image: url( {{vich_uploader_asset(image)}} ); min-height: 10vh;"></div>
-                    <div class="opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-5xl text-white text-center font-semibold">{{image.title}}</div>
+    <main class="flex-grow py-8">
+        <div class="mx-auto max-w-7xl">
+
+            <section>
+                <h1 class="mb-5 text-center text-5xl font-playball">Notre restaurant</h1>
+                <div class="flex justify-center rounded bg-slate-100 p-8 shadow-lg">
+                    <p class="m-5 text-center">
+                        A deux pas du centre historique de Chambéry, du Carré Curial, du Théâtre Malraux et de la
+                        statue des éléphants,<br>
+                        le chef Arnaud Michant et son équipe vous propose un autre regard sur nos terroirs.<br>
+                        Au Quai Antique, venez déguster une cuisine savoureuse et contemporaine inspirée des saisons et
+                        des produits locaux.<br>
+                        Les produits frais sont toujours à l’honneur, la carte évoluant tout au long de l’année.
+                    </p>
                 </div>
-            {% endfor %}
-          </div>
+            </section>
+            
+            <section>
+                <h2 class="mt-20 text-center text-4xl font-playball">Nos créations</h2>
+                <div class="columns-2 lg:columns-3 gap-4 p-4 pt-8 xl:px-0">
+                    {% for image in images %}
+                        <div class="mb-4">
+                            <div class="relative">
+                                <img class="object-cover bg-center min-h-[20rem] rounded-lg" src="{{ vich_uploader_asset(image) }}" alt="{{ image.description }}">
+                                <a class="absolute inset-0 flex items-center justify-center opacity-0 transition hover:bg-white/20 hover:backdrop-blur-sm hover:opacity-100" href="{{ path('app_booking') }}">
+                                    <span class="text-center text-xl font-semibold text-white z-1 lg:text-5xl">{{ image.title }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
         </div>
-      </section>
-    {% include 'public/_partials/bookingside.html.twig' %}
-</main>
+        {% include 'public/_partials/bookingside.html.twig' %}
+    </main>
 {% endblock %}
