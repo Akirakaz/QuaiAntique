@@ -49,7 +49,7 @@
                             <span>{{ meal.price|format_currency('EUR') }}</span>
                         </td>
                         <td class="p-2 text-sm text-gray-500">
-                            <span>{{ meal.category }}</span>
+                            <span>{{ meal.category|renameCategory }}</span>
                         </td>
                         <td class="p-2 text-sm">
                             <div class="flex justify-center gap-x-2">
