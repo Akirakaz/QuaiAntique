@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<title>Booking</title>
+
+{% block body %}
+    <h1>Booking</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ booking.id }}</td>
+            </tr>
+            <tr>
+                <th>Day</th>
+                <td>{{ booking.day }}</td>
+            </tr>
+            <tr>
+                <th>Hours</th>
+                <td>{{ booking.hours }}</td>
+            </tr>
+            <tr>
+                <th>Guests</th>
+                <td>{{ booking.guests }}</td>
+            </tr>
+            <tr>
+                <th>Allergies</th>
+                <td>{{ booking.allergies }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_booking') }}">back to list</a>
+
+    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
+
+    {{ include('public/booking/_delete_form.html.twig') }}
+{% endblock %}

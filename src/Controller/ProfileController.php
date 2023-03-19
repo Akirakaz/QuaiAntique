@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\ProfileType;
+use App\Repository\BookingRepository;
 use App\Repository\UserRepository;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -17,10 +18,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfileController extends AbstractController
 {
     #[Route('/', name: 'app_profile_index', methods: ['GET'])]
-    public function index(): Response
+    public function index(BookingRepository $bookingRepository): Response
     {
+        $bookings = $bookingRepository->findBy(['email' => $this->getUser()->getEmail()]);
+
         return $this->render('public/profile/index.html.twig', [
-            'user' => $this->getUser(),
+            'user'     => $this->getUser(),
+            'bookings' => $bookings,
         ]);
     }
 
