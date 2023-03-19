@@ -39,7 +39,7 @@ class GalleryCrudController extends AbstractController
                 ? 'app_admin_gallery_new'
                 : 'app_admin_gallery_index';
 
-            $this->addFlash('success', "L'image a bien été enregistrée.");
+            $this->addFlash('succès', "L'image a bien été enregistrée.");
 
             return $this->redirectToRoute($nextAction);
         }
