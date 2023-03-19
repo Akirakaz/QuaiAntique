@@ -26,7 +26,7 @@
                     {% for image in images %}
                         <div class="mb-4">
                             <div class="relative">
-                                <img class="w-full rounded-lg bg-center object-cover max-h-[15rem] sm:max-h-fit xs:min-h-[20rem]" src="{{ vich_uploader_asset(image) }}" alt="{{ image.description }}">
+                                <img class="w-full rounded-lg object-center object-cover max-h-[15rem] sm:max-h-fit xs:min-h-[20rem]" src="{{ vich_uploader_asset(image) }}" alt="{{ image.description }}">
                                 <a class="absolute inset-0 flex items-center justify-center opacity-0 transition hover:bg-white/20 hover:backdrop-blur-sm hover:opacity-100" href="{{ path('app_booking') }}">
                                     <span class="text-center text-xl font-semibold text-white z-1 lg:text-5xl text-shadow">{{ image.title }}</span>
                                 </a>
