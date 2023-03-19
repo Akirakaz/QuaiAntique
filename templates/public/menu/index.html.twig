@@ -1,27 +1,51 @@
 {% extends 'public/base.html.twig' %}
 
-{% block title %}Hello MenusController!{% endblock %}
+{% block title %}Carte{% endblock %}
 
 {% block body %}
-    <main class="mx-auto w-full max-w-7xl flex-wrap px-4">
-
-        <h1 class="mt-10 text-5xl text-center font-playball mb-20">Carte</h1>
-        <div class="mt-4 min-w-full ">
-            <h3 class="flex-row text-start text-3xl font-playball mx-10 underline underline-offset-4 mt-4 ">Entrée</h3>
-            <div class="flex flex-row justify-start ">
-                {#                {{ dump(menus) }} #}
-                {#                {% for menu in menus %} #}
-                {#                        <div class="justify-start flex"> #}
-                {#                            <div class="flex-col p-2 text-gray-700 font-bold text-lg">{{ menu.title }}</div> #}
-                {#                                <div class="flex-col p-2 text-sm text-gray-500">{{ menu.description }}</div> #}
-                {#                                <div class="flex-col p-2 text-sm text-gray-500">{{ menu.price|format_currency('EUR') }}</div> #}
-                {#                            </div> #}
-                {#                        </div> #}
-                {#                {% else %} #}
-                {#                    <tr> #}
-                {#                        <td colspan="6" class="text-center p-4">Aucun plat enregistré</td> #}
-                {#                    </tr> #}
-                {#                {% endfor %} #}
+    <main class="flex-grow py-16">
+        <h1 class="mb-16 text-center text-5xl font-playball">La carte</h1>
+        <div class="mx-auto flex max-w-5xl flex-col gap-16 px-4">
+            <div class="flex flex-col flex-col-reverse gap-16">
+                {% for menu in menus %}
+                    <section>
+                        <h2 class="border-b-4 border-b text-4xl font-playball">{{ menu.title }}</h2>
+                        <div class="mt-8 grid grid-cols-1 items-center gap-4 md:grid-cols-2 lg:grid-cols-3">
+                            {% for formula in menu.formulas %}
+                                <div class="flex h-full flex-col border p-4 shadow-md">
+                                    <h3 class="text-center text-3xl font-playball"><a class="transition hover:text-gray-500" href="{{ path('app_booking') }}">{{ formula.title }}</a></h3>
+                                    <p class="mt-4 flex-grow">{{ formula.description }}</p>
+                                    <div class="mt-8 flex self-center">
+                                        {% if formula.starter %}
+                                            <div class="formula-icon" title="Entrée">
+                                                <svg class="w-14 fill-black transition hover:fill-green-600" viewBox="0 0 36 36">
+                                                    <path d="M14.03 13.08c.2.95.31 1.83.38 2.52a150.71 150.71 0 0 0-2.92-3.14 32.82 32.82 0 0 0-2.5-2.39 4.47 4.47 0 0 0-.45-.32 1.1 1.1 0 0 0-.5-.19c-.12 0-.3.02-.45.16a.61.61 0 0 0-.17.42c-.01.18.05.38.12.55.27.69.78 1.45 1.35 2.19a27.7 27.7 0 0 0 1.87 2.15c.54.57 1.06 1.07 1.47 1.47H8c-.27 0-.58-.13-.93-.43-.35-.31-.7-.77-1.05-1.36a22.74 22.74 0 0 1-1.86-4.37 56.77 56.77 0 0 1-1.53-5.76 31.01 31.01 0 0 1 2.86.52c1.98.45 4.26 1.18 5.7 2.3 1.55 1.19 2.4 3.52 2.84 5.68Zm4.76 2.46a180.55 180.55 0 0 0 2.2-2.89c.44-.6.81-1.13.96-1.43l.08-.2a.75.75 0 0 0 .04-.26.56.56 0 0 0-.63-.53c-.16.01-.3.09-.4.14-.11.06-.23.15-.36.24a33.08 33.08 0 0 0-4.6 4.53 9.3 9.3 0 0 0-.52-3.02c1.7-1.91 3.35-3 5.1-3.52 1.7-.5 3.55-.5 5.74-.19a9.76 9.76 0 0 1-1.5 3.54 6.84 6.84 0 0 1-2.35 2.04c-.8.44-1.65.75-2.54 1.08l-.32.12c-.3.11-.6.22-.9.35Zm2.29-4.82Zm2.9 20.75-.06.03H13.07l-.07-.04a5.8 5.8 0 0 1-.86-.65c-.9-.79-2.52-2.4-5.26-5.63a35.52 35.52 0 0 1-3.74-6 .47.47 0 0 1 .43-.68h29.65c.4 0 .62.42.42.74a86.57 86.57 0 0 1-4.04 5.96 48.23 48.23 0 0 1-4.82 5.62c-.42.4-.67.57-.8.65Z"/>
+                                                </svg>
+                                            </div>
+                                        {% endif %}
+                                        {% if formula.main %}
+                                            <div class="formula-icon" title="Plat">
+                                                <svg class="w-14 fill-black transition hover:fill-blue-600" viewBox="0 0 36 36">
+                                                    <path d="M19.6 32.4c4.9 0 9.24-2.41 11.9-6.12V15.56a1.4 1.4 0 0 0-1.1-1.36 11.37 11.37 0 1 1-10.8-7.8h.29c3.84.1 7.22 2.11 9.2 5.12l1.33-3.58a14.57 14.57 0 0 0-10.46-4.8h-.36c-3.52 0-6.74 1.24-9.26 3.31a19.94 19.94 0 0 1-.46 3.98 29.66 29.66 0 0 1-1.84 4.8c-.2.44-.33.92-.33 1.41v9.66a14.6 14.6 0 0 0 11.89 6.1Zm14.62-14.63c0 1.29-.17 2.54-.48 3.72v-7.43c.31 1.18.48 2.43.48 3.71ZM5.19 15.38a14.75 14.75 0 0 0 .27 6.07l.03-4.68c0-.48-.1-.95-.3-1.39Zm3.17-6.95c-.3.37-.6.75-.86 1.15a.48.48 0 0 0 .86-.29v-.86Z"/>
+                                                    <path d="M19.6 26.52a8.74 8.74 0 0 0 .22-17.5h-.22a8.74 8.74 0 0 0 0 17.5ZM2.5 10.11c-.6-2.23-.53-5.58-.44-7.18a.97.97 0 0 1 .97-.91 1 1 0 0 1 1 1v5.96a.48.48 0 1 0 .96 0v-6a.96.96 0 1 1 1.91 0v6a.48.48 0 1 0 .96 0V3a1 1 0 0 1 1-1c.51 0 .94.4.97.92.07 1.6.12 4.94-.44 7.18a29.67 29.67 0 0 1-1.84 4.8c-.21.45-.33.93-.33 1.42v16.03a1.17 1.17 0 1 1-2.34-.01l.1-15.9c0-.56-.14-1.12-.42-1.63a24.73 24.73 0 0 1-2.06-4.7ZM34.21 32.4V2.67a.66.66 0 0 0-1.28-.24l-3.64 9.65c-.34.9.33 1.87 1.3 1.87.76 0 1.37.62 1.37 1.38V32.4a1.13 1.13 0 1 0 2.25 0Z"/>
+                                                </svg>
+                                            </div>
+                                        {% endif %}
+                                        {% if formula.dessert %}
+                                            <div class="formula-icon" title="Dessert">
+                                                <svg class="w-14 fill-black transition hover:fill-pink-600" viewBox="0 0 36 36">
+                                                    <path d="M29.68 16.52c0-.92-.23-1.78-.63-2.54l-.38.22-1.4.8a3.39 3.39 0 0 1-.43 3.68c1.1.52 1.79 1.23 1.79 2.02 0 1.6-2.87 2.92-6.4 2.92-3.14 0-5.75-1.03-6.3-2.39a2.7 2.7 0 0 1-2.87-.34A3.44 3.44 0 0 1 10.53 22a3.5 3.5 0 0 1-3.47-3.53A3.5 3.5 0 0 1 10.03 15c-.1-.31-.15-.65-.15-1 0-2.08 1.9-3.77 4.23-3.77h.29c-.25-.4-.4-.86-.4-1.36 0-1.16.73-2.14 1.79-2.56-.02-.75.1-1.5.35-2.2a4.9 4.9 0 0 0-4.18 4.41 5.93 5.93 0 0 0-4.13 5.1 5.58 5.58 0 0 0 1.15 10.22l1.04 6.57a3.67 3.67 0 0 0 3.27 3.1c.13 0 .25.03.39.03h8.92c.13 0 .25-.02.38-.04a3.67 3.67 0 0 0 3.28-3.09l.87-5.58h.01c2.18-.87 3.54-2.35 3.54-4.12 0-.65-.2-1.7-1.21-2.7.14-.48.2-.98.2-1.48Zm-16.8 14.15-1.02-6.78c.5-.12.98-.31 1.42-.57l.23.05h.02l1.3 8.78h-.22c-.87.02-1.6-.62-1.73-1.48Zm4.4 1.49V24.8c.56.21 1.13.38 1.72.51l.17.04.17.03v6.76H17.3v.01Zm4.18 0 .98-6.61 1.75-.24-.78 5.36c-.13.87-.87 1.5-1.75 1.5l-.2-.01Z"/>
+                                                    <path d="M20.35 11.57c1.17.18 2.33.48 3.4.94.66.29 1.2.7 1.7 1.17l4.24-2.44a4.14 4.14 0 0 0-4.13-7.18A4.14 4.14 0 0 0 18.4 8.2l1.95 3.36Z"/>
+                                                </svg>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <p class="mt-8 self-end text-xl font-semibold">{{ formula.price|format_currency('EUR') }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+                {% endfor %}
             </div>
         </div>
         {% include 'public/_partials/bookingside.html.twig' %}

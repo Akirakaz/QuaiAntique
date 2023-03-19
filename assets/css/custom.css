@@ -42,9 +42,17 @@ select, input, textarea {
 
 
 .inscription-bg {
-  background-image: url('../img/bg/inscription.webp');
+  @apply bg-[url('../img/bg/inscription.webp')]
 }
 
 .connexion-bg {
-  background-image: url('../img/bg/connexion.webp');
+  @apply bg-[url('../img/bg/connexion.webp')]
+}
+
+.formula-icon {
+  @apply flex items-center;
+
+  &:nth-last-child(n+2)::after {
+    @apply w-6 ml-1 content-[url("../img/icons/plus.svg")];
+  }
 }
