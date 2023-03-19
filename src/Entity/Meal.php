@@ -23,8 +23,8 @@ class Meal
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: '2')]
     private ?string $price = null;
 
-    #[ORM\ManyToOne(inversedBy: 'meals')]
-    private ?MealCategory $category = null;
+    #[ORM\Column(length: 255)]
+    private ?string $category = null;
 
     public function getId(): ?int
     {
@@ -67,12 +67,12 @@ class Meal
         return $this;
     }
 
-    public function getCategory(): ?MealCategory
+    public function getCategory(): ?string
     {
         return $this->category;
     }
 
-    public function setCategory(?MealCategory $category): self
+    public function setCategory(?string $category): self
     {
         $this->category = $category;
 

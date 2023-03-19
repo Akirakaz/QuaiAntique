@@ -24,6 +24,7 @@ class TwigExtension extends AbstractExtension
         return [
             new TwigFilter('boolIconFormater', [$this, 'boolIconFormater']),
             new TwigFilter('renameDay', [$this, 'renameDay']),
+            new TwigFilter('renameCategory', [$this, 'renameCategory']),
             new TwigFilter('formatPhone', [$this, 'formatPhoneNumber']),
         ];
     }
@@ -66,6 +67,21 @@ class TwigExtension extends AbstractExtension
 
         if (array_key_exists($day, $days)) {
             return $days[$day];
+        }
+
+        return null;
+    }
+
+    public function renameCategory(string $category): ?string
+    {
+        $categories = [
+            0 => 'Entrées',
+            1 => 'Plats',
+            2 => 'Desserts',
+        ];
+
+        if (array_key_exists($category, $categories)) {
+            return $categories[$category];
         }
 
         return null;
