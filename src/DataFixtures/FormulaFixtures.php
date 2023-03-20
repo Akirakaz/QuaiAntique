@@ -22,13 +22,13 @@ class FormulaFixtures extends Fixture
 
         for ($i = 0; $i < 10; $i++) {
             $formula = new Formula();
-            $formula->setTitle($faker->title);
+            $formula->setTitle($faker->text(50));
             $formula->setDescription($faker->sentence());
-            $formula->setPrice($faker->randomNumber());
+            $formula->setPrice($faker->randomFloat(2, 10, 30));
             $formula->setStarter($faker->boolean());
             $formula->setMain($faker->boolean());
             $formula->setDessert($faker->boolean());
-            $formula->setMenu($menu->getTitle());
+            $formula->setMenu($menu);
             $manager->persist($formula);
         }
 
