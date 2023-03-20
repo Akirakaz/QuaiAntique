@@ -1,9 +1,23 @@
-<!DOCTYPE html>
-
-<title>Booking index</title>
+{% extends 'public/base.html.twig' %}
 
 {% block body %}
     <h1>Booking index</h1>
+
+
+
+    <button id="refresh" class="border-4 bg-red-500 w-16">Refresh</button>
+    <div id="seats" class="text-5xl font-black">
+
+    </div>
+
+    <label for="selectSeat">
+        <select name="selector" id="selectSeat">
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="8">8</option>
+        </select>
+    </label>
 
     <table class="table">
         <thead>
@@ -19,10 +33,10 @@
         <tbody>
         {% for booking in bookings %}
             <tr>
-                <td>{{ dump(booking) }}</td>
+                {#                <td>{{ dump(booking) }}</td> #}
                 
                 <td>
-                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}">show</a>
+                    {#                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}">show</a> #}
                     <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
                 </td>
             </tr>

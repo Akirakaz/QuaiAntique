@@ -1,6 +1,8 @@
 <div class="max-w-4xl mx-auto">
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {#    {{ form_widget(form) }} #}
+    {{ form_row(form.guests) }}
+    <div id="seats" class="text-red-500"></div>
     <button class="btn">{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}
 </div>

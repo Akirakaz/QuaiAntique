@@ -19,12 +19,6 @@ class Settings
     #[ORM\Column]
     private ?int $seats = null;
 
-    #[ORM\Column]
-    private ?int $remainingMorningSeats = null;
-
-    #[ORM\Column]
-    private ?int $remainingEveningSeats = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -39,28 +33,6 @@ class Settings
     {
         $this->seats = $seats;
 
-        return $this;
-    }
-
-    public function getRemainingMorningSeats(): ?int
-    {
-        return $this->remainingMorningSeats;
-    }
-
-    public function setRemainingMorningSeats(?int $remainingMorningSeats): Settings
-    {
-        $this->remainingMorningSeats = $remainingMorningSeats;
-        return $this;
-    }
-
-    public function getRemainingEveningSeats(): ?int
-    {
-        return $this->remainingEveningSeats;
-    }
-
-    public function setRemainingEveningSeats(?int $remainingEveningSeats): Settings
-    {
-        $this->remainingEveningSeats = $remainingEveningSeats;
         return $this;
     }
 

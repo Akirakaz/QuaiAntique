@@ -9,6 +9,9 @@ use App\Form\ProfileType;
 use App\Repository\BookingRepository;
 use App\Repository\SettingsRepository;
 use Cassandra\Type\UserType;
+use DateInterval;
+use DatePeriod;
+use DateTime;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,6 +32,20 @@ class BookingController extends AbstractController
     #[Route('/new', name: 'app_booking_new', methods: ['GET', 'POST'])]
     public function new(Request $request, BookingRepository $bookingRepository, SettingsRepository $settingsRepository): Response
     {
+        $rangeMorning = new DatePeriod(
+            new DateTime('12:00:00'),
+            new DateInterval('P1M'),
+            new DateTime('13:45:00'),
+        );
+
+        $rangeEvening = new DatePeriod(
+            new DateTime('12:00:00'),
+            new DateInterval('P1M'),
+            new DateTime('20:45:00'),
+        );
+
+//        dump($bookingRepository->countGuestsForRange($rangeMorning));
+        dd($bookingRepository->countGuestsForRange($rangeEvening));
         $booking = new Booking();
 
 
@@ -47,6 +64,7 @@ class BookingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $settings       = $settingsRepository->findOneBy(['restaurant' => 'QuaiAntique']);
             $remainingSeats = ($settings->getSeats() - $booking->getGuests());
             $settings->setRemainingMorningSeats($remainingSeats);
@@ -63,14 +81,6 @@ class BookingController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_booking_show', methods: ['GET'])]
-    public function show(Booking $booking): Response
-    {
-        return $this->render('public/booking/show.html.twig', [
-            'booking' => $booking,
-        ]);
-    }
-
     #[Route('/{id}/edit', name: 'app_booking_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Booking $booking, BookingRepository $bookingRepository): Response
     {
@@ -83,7 +93,7 @@ class BookingController extends AbstractController
             return $this->redirectToRoute('app_booking', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('public/booking/edit.html.twig', [
+        return $this->render('public/booking/edit.html.twig', [
             'booking' => $booking,
             'form'    => $form,
         ]);
@@ -97,5 +107,16 @@ class BookingController extends AbstractController
         }
 
         return $this->redirectToRoute('app_booking', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+    #[Route('/seats', name: 'app_booking_get_seats', methods: ['GET'])]
+    public function getRemainingSeats(SettingsRepository $settingsRepository)
+    {
+        $repo = $settingsRepository->findOneBy(['restaurant' => 'QuaiAntique']);
+
+        $seats = $repo->getSeats();
+
+        return $this->json($seats, 200);
     }
 }

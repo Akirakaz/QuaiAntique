@@ -5,3 +5,5 @@ import "../css/tailwind.css";
 import "./alpinejs";
 
 import "./imgModale";
+
+import "./booking";
