@@ -14,11 +14,11 @@ class FormulaFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
         $menu = new Menu();
+
         for ($j = 0; $j < 4; $j++) {
             $menu->setTitle($faker->title);
             $manager->persist($menu);
         }
-        
 
         for ($i = 0; $i < 10; $i++) {
             $formula = new Formula();
