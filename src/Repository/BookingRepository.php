@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Booking;
 use DatePeriod;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\Persistence\ManagerRegistry;
@@ -44,9 +45,10 @@ class BookingRepository extends ServiceEntityRepository
     /**
      * Get the number of guest of a booking for a given range of date
      * @param DatePeriod $timeRange
+     * @param DateTime $date
      * @return int The number of guest
      */
-    public function countGuestsForRange(DatePeriod $timeRange): int
+    public function countGuestsForRange(DatePeriod $timeRange, DateTime $date): int
     {
         return $this->createQueryBuilder('b')
             ->select('SUM(b.guests)')
@@ -59,6 +61,8 @@ class BookingRepository extends ServiceEntityRepository
                 'closing',
                 $timeRange->getEndDate()->format('H:i:s')
             )
+            ->andWhere('b.date = :date')
+            ->setParameter('date', $date->format('Y-m-d'))
             ->getQuery()
             ->getResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
     }

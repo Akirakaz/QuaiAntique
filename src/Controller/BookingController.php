@@ -14,6 +14,7 @@ use DatePeriod;
 use DateTime;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,10 +46,8 @@ class BookingController extends AbstractController
         );
 
 //        dump($bookingRepository->countGuestsForRange($rangeMorning));
-        dd($bookingRepository->countGuestsForRange($rangeEvening));
+        //dd($bookingRepository->countGuestsForRange($rangeEvening));
         $booking = new Booking();
-
-
         $user = $this->getUser();
 
         if ($user) {
@@ -65,12 +64,12 @@ class BookingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $settings       = $settingsRepository->findOneBy(['restaurant' => 'QuaiAntique']);
-            $remainingSeats = ($settings->getSeats() - $booking->getGuests());
-            $settings->setRemainingMorningSeats($remainingSeats);
+            //$settings       = $settingsRepository->findOneBy(['restaurant' => 'QuaiAntique']);
+            //$remainingSeats = ($settings->getSeats() - $booking->getGuests());
+            //$settings->setRemainingMorningSeats($remainingSeats);
 
             $bookingRepository->save($booking, true);
-            $settingsRepository->save($settings);
+            //$settingsRepository->save($settings);
 
             return $this->redirectToRoute('app_booking', [], Response::HTTP_SEE_OTHER);
         }
@@ -111,12 +110,30 @@ class BookingController extends AbstractController
 
 
     #[Route('/seats', name: 'app_booking_get_seats', methods: ['GET'])]
-    public function getRemainingSeats(SettingsRepository $settingsRepository)
+    public function getRemainingSeats(BookingRepository $bookingRepository, SettingsRepository $settingsRepository): JsonResponse
     {
-        $repo = $settingsRepository->findOneBy(['restaurant' => 'QuaiAntique']);
+        $rangeMorning = new DatePeriod(
+            new DateTime('12:00:00'),
+            new DateInterval('P1M'),
+            new DateTime('14:00:00'),
+        );
 
-        $seats = $repo->getSeats();
+        $rangeEvening = new DatePeriod(
+            new DateTime('19:00:00'),
+            new DateInterval('P1M'),
+            new DateTime('21:00:00'),
+        );
 
-        return $this->json($seats, 200);
+        $date = new DateTime('2023-03-20');
+
+        $settings   = $settingsRepository->findOneBy(['restaurant' => 'QuaiAntique']);
+        $totalSeats = $settings->getSeats();
+
+        $usedSeats = $bookingRepository->countGuestsForRange($rangeMorning, $date);
+//        $remainingSeatsEvening = $bookingRepository->countGuestsForRange($rangeEvening, $date);
+
+        $availableSeats = $totalSeats - $usedSeats;
+
+        return $this->json($availableSeats, 200);
     }
 }
