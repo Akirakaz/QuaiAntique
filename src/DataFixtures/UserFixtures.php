@@ -20,8 +20,8 @@ class UserFixtures extends Fixture
             $user->setPhone(PhoneNumber::numerify('047#######'));
             $user->setEmail($faker->email);
             $user->setPassword($faker->password());
-            $user->setGuests($faker->numberBetween(1,8));
-            $user->setAllergies($faker->words());
+            $user->setGuests($faker->numberBetween(1, 8));
+            $user->setAllergies($faker->text);
             $manager->persist($user);
         }
 
