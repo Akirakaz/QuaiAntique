@@ -23,10 +23,14 @@ class BookingController extends AbstractController
     #[Route('/{id}', name: 'app_admin_booking_delete', methods: ['POST'])]
     public function delete(Request $request, Booking $booking, BookingRepository $bookingRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$booking->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $booking->getId(), $request->request->get('_token'))) {
             $bookingRepository->remove($booking, true);
         }
 
-        return $this->redirectToRoute('app_admin_booking_index', [], Response::HTTP_SEE_OTHER);
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_admin_booking_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->redirectToRoute('app_profile_index', [], Response::HTTP_SEE_OTHER);
     }
 }
