@@ -109,8 +109,11 @@ class BookingController extends AbstractController
     }
 
 
+    /**
+     * @throws \Exception
+     */
     #[Route('/seats', name: 'app_booking_get_seats', methods: ['GET'])]
-    public function getRemainingSeats(BookingRepository $bookingRepository, SettingsRepository $settingsRepository): JsonResponse
+    public function getRemainingSeats(Request $request, BookingRepository $bookingRepository, SettingsRepository $settingsRepository): JsonResponse
     {
         $rangeMorning = new DatePeriod(
             new DateTime('12:00:00'),
@@ -124,7 +127,7 @@ class BookingController extends AbstractController
             new DateTime('21:00:00'),
         );
 
-        $date = new DateTime('2023-03-20');
+        $date = new DateTime($request->query->get('bookingDate'));
 
         $settings   = $settingsRepository->findOneBy(['restaurant' => 'QuaiAntique']);
         $totalSeats = $settings->getSeats();

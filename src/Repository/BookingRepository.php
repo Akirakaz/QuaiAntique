@@ -46,9 +46,9 @@ class BookingRepository extends ServiceEntityRepository
      * Get the number of guest of a booking for a given range of date
      * @param DatePeriod $timeRange
      * @param DateTime $date
-     * @return int The number of guest
+     * @return int|null The number of guest
      */
-    public function countGuestsForRange(DatePeriod $timeRange, DateTime $date): int
+    public function countGuestsForRange(DatePeriod $timeRange, DateTime $date): ?int
     {
         return $this->createQueryBuilder('b')
             ->select('SUM(b.guests)')

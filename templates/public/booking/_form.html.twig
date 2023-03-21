@@ -3,6 +3,8 @@
     {#    {{ form_widget(form) }} #}
     {{ form_row(form.guests) }}
     <div id="seats" class="text-red-500"></div>
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    {#    <button class="rounded bg-slate-200 px-4 py-2 hover:bg-slate-300">{{ button_label|default('Save') }}</button> #}
+
+    <div id="submit"></div>
     {{ form_end(form) }}
 </div>
