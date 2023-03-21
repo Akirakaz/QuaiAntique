@@ -3,11 +3,8 @@ const selectSeat = document.getElementById('booking_guests');
 const booking_date = document.getElementById('booking_date');
 const submitDiv = document.getElementById('submit');
 
-
 const request = (url, params = {}, method = 'GET') => {
-  let options = {
-    method
-  };
+  let options = {method};
   if ('GET' === method) {
     url += '?' + (new URLSearchParams(params)).toString();
   } else {
@@ -43,17 +40,23 @@ selectSeat.addEventListener('change', async function (event) {
   }
 })
 
+
 function showSubmitButton() {
+  const submitButton = document.getElementById('submitBtn')
+
   if (valid) {
-    const submitBtn = document.createElement('button')
+    if (!submitButton) {
+      const submitBtn = document.createElement('button')
 
-    submitBtn.innerText = 'Réserver'
-    submitBtn.id = 'submitBtn'
-    submitBtn.classList.add('rounded', 'bg-slate-200', 'px-4', 'py-2', 'hover:bg-slate-300')
+      submitBtn.innerText = 'Réserver'
+      submitBtn.id = 'submitBtn'
+      submitBtn.classList.add('rounded', 'bg-slate-200', 'px-4', 'py-2', 'hover:bg-slate-300')
 
-    submitDiv.appendChild(submitBtn)
+      submitDiv.appendChild(submitBtn)
+    }
+
   } else {
-    document.getElementById('submitBtn').remove()
+    submitButton.remove()
   }
 }
 
