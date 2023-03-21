@@ -43,11 +43,11 @@ class ImageFixtures extends Fixture implements FixtureGroupInterface
         $uploadDir     = $this->rootPath . self::UPLOAD_DIR;
         $fixturePhotos = $this->rootPath . self::PHOTOS_DIR;
 
-        $finder->files()->in($tmpDir);
-
         if (!$filesystem->exists($tmpDir)) {
             $filesystem->mkdir($tmpDir, 0770);
         }
+
+        $finder->files()->in($tmpDir);
 
         $filesystem->remove($finder->files()->in($uploadDir));
         $filesystem->mirror($fixturePhotos, $tmpDir);
