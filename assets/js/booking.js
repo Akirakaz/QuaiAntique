@@ -4,6 +4,7 @@ if (seats) {
   const selectSeat = document.getElementById('booking_guests');
   const booking_date = document.getElementById('booking_date');
   const booking_hour_hour = document.getElementById('booking_hour_hour');
+  const booking_hour_minute = document.getElementById('booking_hour_minute');
   const submitDiv = document.getElementById('submit');
 
   const request = (url, params = {}, method = 'GET') => {
@@ -39,7 +40,7 @@ if (seats) {
     }
   }
 
-  [booking_date, selectSeat, booking_hour_hour].forEach((element) => {
+  [booking_date, selectSeat, booking_hour_hour, booking_hour_minute].forEach((element) => {
     element.addEventListener('change', async (event) => {
       await checkAvailableSeat()
     })
