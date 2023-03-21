@@ -73,5 +73,12 @@
                 </a>
             </div>
         </div>
+        <section class="mt-8 border-t">
+            <h2 class="my-8 text-3xl">Gestion du restaurant</h2>
+            <p>Nombre de place actuel dans le restaurant: <span class="text-lg font-semibold" id="getTotalSeat">{{ totalSeats.seats }}</span></p>
+            <label for="setTotalSeatsInput">Mettre à jour</label>
+            <input class="w-20" id="setTotalSeatsInput" type="number" min="1" max="200" value="{{ totalSeats.seats }}">
+            <button id="setTotalSeatsButton" class="rounded bg-slate-200 px-4 py-2 hover:bg-slate-300">Valider</button>
+        </section>
     </main>
 {% endblock %}
