@@ -10,6 +10,7 @@ export default defineConfig({
     symfonyPlugin(),
   ],
   build: {
+    target: 'esnext',
     rollupOptions: {
       input: {
         app: "./assets/js/app.js",
