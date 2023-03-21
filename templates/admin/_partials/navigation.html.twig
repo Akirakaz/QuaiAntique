@@ -71,15 +71,14 @@
     <div class="fixed top-16 bottom-0 overflow-y-scroll bg-slate-300/95 opacity-0 shadow-slate-400/50 transition-all duration-300 translate-x-[-300px] lg:opacity-100 lg:translate-x-0 w-[300px] shadow-r-md"
          :class="{'!translate-x-0 !opacity-100': mainMenu}"
     >
-        <nav class="px-2 [&>*]:text-slate-800 [&>*]:mt-3 [&>*]:block [&>*]:cursor-pointer [&>*]:border-l-4
-                    [&>*]:transition [&>*]:duration-300 [&>*]:p-2.5 hover:[&>*]:border-l-slate-400 first-of-type:[&>*]:font-bold
-"
+        <nav class="px-2 [&>*]:text-slate-800 [&>*]:mt-3 [&>*]:block [&>*]:cursor-pointer [&>*]:border-l-4 [&>*]:transition [&>*]:duration-300 [&>*]:p-2.5 hover:[&>*]:border-l-slate-400 first-of-type:[&>*]:font-bold"
              x-data="{menuDropdown: false}">
             {% for link in menuLinks %}
                 <a href="{{ path(link.routeName) }}" class="{{ isMenuActive(link.relatedRoutes, 'border-l-slate-500', 'border-l-transparent') }}">
                     <span class="ml-2">{{ link.label }}</span>
                 </a>
             {% endfor %}
+            <a href="{{ path('app_logout') }}"><span class="ml-2">Déconnexion</span></a>
         </nav>
     </div>
 </header>

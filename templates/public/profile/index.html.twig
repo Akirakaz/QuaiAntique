@@ -19,8 +19,9 @@
                     <p class="text-sm font-semibold">Allergies:</p>
                     <p class="text-gray-600">{{ user.allergies }}</p>
                 </div>
-                <div class="mt-4 flex justify-end">
+                <div class="mt-4 flex justify-between">
                     <a href="{{ path('app_profile_edit') }}" class="rounded border border-gray-300 bg-gray-200 px-4 py-2 transition hover:text-slate-50 hover:bg-slate-800">Modifier</a>
+                    <a href="{{ path('app_logout') }}" class="rounded border border-gray-300 bg-gray-200 px-4 py-2 transition hover:bg-red-200"><span class="ml-2">Déconnexion</span></a>
                 </div>
             </aside>
             <section class="flex-grow rounded-md bg-gray-50 p-4 shadow border">
