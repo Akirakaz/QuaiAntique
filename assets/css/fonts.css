@@ -1,10 +1,7 @@
 @font-face {
-  font-family: 'Parisienne';
+  font-family: 'Playball';
   src:
-    local('Parisienne'),
-    local('Parisienne-Regular'),
-    url('../fonts/Parisienne-Regular.woff2') format('woff2'),
-    url('../fonts/Parisienne-Regular.woff') format('woff');
+    url('../fonts/Playball.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }

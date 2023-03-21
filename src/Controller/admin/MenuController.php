@@ -34,9 +34,13 @@ class MenuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $menuRepository->save($menu, true);
 
-            $this->addFlash('succès', "Le menu a bien été enregistrée.");
+            $nextAction = $form->get('saveAndAdd')->isClicked()
+                ? 'app_admin_menu_new'
+                : 'app_admin_menu_index';
 
-            return $this->redirectToRoute('app_admin_menu_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('succès', "Le menu a bien été enregistrée.");
+            
+            return $this->redirectToRoute($nextAction);
         }
 
         return $this->render('admin/menu/new.html.twig', [
@@ -54,13 +58,9 @@ class MenuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $menuRepository->save($menu, true);
 
-            $nextAction = $form->get('saveAndAdd')->isClicked()
-                ? 'app_admin_menu_new'
-                : 'app_admin_menu_index';
-
             $this->addFlash('succès', "Le menu a bien été mis à jour.");
 
-            return $this->redirectToRoute($nextAction);
+            return $this->redirectToRoute('app_admin_menu_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/menu/edit.html.twig', [

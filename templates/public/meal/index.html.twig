@@ -1,0 +1,55 @@
+{% extends 'public/base.html.twig' %}
+
+{% block pageTitle %}La carte{% endblock %}
+
+{% block body %}
+    <main class="flex-grow py-16">
+        <h1 class="mb-16 text-center text-5xl font-playball">La carte</h1>
+
+        <div class="mx-auto flex max-w-5xl flex-col gap-16 px-4">
+            <div>
+                <h2 class="border-b-4 text-3xl font-playball">Entrées</h2>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {% for meal in meals %}
+                        {% if meal.category == 0 %}
+                            <div class="flex flex-col rounded-lg border p-4 shadow-md hover:shadow-lg transition">
+                                <h3 class="text-xl font-semibold"><a class="hover:text-gray-500 transition" href="{{ path('app_booking') }}">{{ meal.title }}</a></h3>
+                                <p class="mt-2 flex-grow text-gray-600">{{ meal.description }}</p>
+                                <p class="text-right text-lg font-semibold text-gray-500">{{ meal.price|format_currency('EUR') }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <h2 class="border-b-4 text-3xl font-playball">Plats</h2>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ">
+                    {% for meal in meals %}
+                        {% if meal.category == 1 %}
+                            <div class="flex flex-col rounded-lg border p-4 shadow-md hover:shadow-lg transition">
+                                <h3 class="text-xl font-semibold"><a class="hover:text-gray-500 transition" href="{{ path('app_booking') }}">{{ meal.title }}</a></h3>
+                                <p class="mt-2 flex-grow text-gray-600">{{ meal.description }}</p>
+                                <p class="text-right text-lg font-semibold text-gray-500">{{ meal.price|format_currency('EUR') }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <h2 class="border-b-4 text-3xl font-playball">Desserts</h2>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ">
+                    {% for meal in meals %}
+                        {% if meal.category == 2 %}
+                            <div class="flex flex-col rounded-lg border p-4 shadow-md hover:shadow-lg transition">
+                                <h3 class="text-xl font-semibold"><a class="hover:text-gray-500 transition" href="{{ path('app_booking') }}">{{ meal.title }}</a></h3>
+                                <p class="mt-2 flex-grow text-gray-600">{{ meal.description }}</p>
+                                <p class="text-right text-lg font-semibold text-gray-500">{{ meal.price|format_currency('EUR') }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% include 'public/_partials/bookingside.html.twig' %}
+    </main>
+{% endblock %}

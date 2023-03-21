@@ -39,3 +39,30 @@ select, input, textarea {
     @apply text-blue-600;
   }
 }
+
+
+.inscription-bg {
+  @apply bg-[url('../img/bg/inscription.webp')]
+}
+
+.connexion-bg {
+  @apply bg-[url('../img/bg/connexion.webp')]
+}
+
+.reservation-bg {
+  @apply bg-[url('../img/bg/reservation.webp')]
+}
+
+.formula-icon {
+  @apply flex items-center;
+
+  &:nth-last-child(n+2)::after {
+    @apply w-6 ml-1 content-[url("../img/icons/plus.svg")];
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 4px 6px theme('colors.black');
+  }
+}

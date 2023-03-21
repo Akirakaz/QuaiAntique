@@ -1,22 +1,21 @@
 {% extends 'public/base.html.twig' %}
 
-{% block title %}Contact{% endblock %}
+{% block pageTitle %}Contact{% endblock %}
 
 {% block body %}
-<h1 class="text-center p-4 font-parisienne text-5xl text-yellow-600">Contact</h1>
+    <main class="flex-grow bg-cover bg-center bg-no-repeat">
+        <h1 class="p-4 text-center text-5xl font-playball">Contact</h1>
+        <section class="mx-auto max-w-7xl p-4 mt-8">
+            <div class="flex flex-wrap justify-center md:flex-nowrap">
 
-<div class="flex justify-center h-full pb-4">
-    <div class="flex flex-col lg:flex-row lg:max-w-l rounded-xl  shadow-xl">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d665.2282396935158!2d5.920568693251551!3d45.56634845663926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478ba8f8d8420b89%3A0x1611f3c4f2f24981!2sPl.%20de%20l&#39;H%C3%B4tel%20de%20ville%2C%2073000%20Chamb%C3%A9ry!5e0!3m2!1sfr!2sfr!4v1676689584233!5m2!1sfr!2sfr" width="550" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      <div class="p-6 flex flex-col justify-center">
-        <p class="text-gray-700 text-base mb-4">
-          Place de l'hotel de ville </br> 73000 CHAMBERY
-        </p>
-        <p class="text-gray-700 text-base mb-4">
-          tél: 04 79 01 02 03 </br> mail: contact@quaiantique.com
-        </p>
-      </div>
-    </div>
-  </div>
-
+                <iframe class="aspect-video w-full max-w-3xl md:shadow-xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d665.2282396935158!2d5.920568693251551!3d45.56634845663926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478ba8f8d8420b89%3A0x1611f3c4f2f24981!2sPl.%20de%20l&#39;H%C3%B4tel%20de%20ville%2C%2073000%20Chamb%C3%A9ry!5e0!3m2!1sfr!2sfr!4v1676689584233!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="text-gray-700 flex w-full flex-col justify-center rounded p-6 shadow-xl md:w-1/4">
+                    <p><span class="font-semibold">Adresse:</span> Place de l'hotel de ville <br> 73000 CHAMBERY</p>
+                    <p><span class="font-semibold">Tél:</span> 04 79 01 02 03</p>
+                    <p><span class="font-semibold">Mail:</span> contact@quaiantique.com</p>
+                </div>
+            </div>
+        </section>
+        {% include 'public/_partials/bookingside.html.twig' %}
+    </main>
 {% endblock %}

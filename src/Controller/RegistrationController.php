@@ -27,21 +27,24 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
+            $user
+                ->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
                 )
-            );
+                ->setRoles(['ROLE_CLIENT']);
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_home');
+            $this->addFlash('succès', 'Votre compte a bien été crée.');
+
+            return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('public/registration/register.html.twig', [
+        return $this->render('public/registration/index.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }

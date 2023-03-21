@@ -28,3 +28,7 @@ formula:
     not_blank: "Veuillez donner une description à votre formule."
 price:
   invalid: "Veuillez saisir un montant valide. (min: 0, max: 999.99)"
+profile:
+  booking_name_not_blank: "Veuillez renseigner un nom pour les réservations."
+  incorrect_phone: "Le numéro de téléphone n'est pas valide."
+  allergies: "Indiquez vos allergies alimentaires."

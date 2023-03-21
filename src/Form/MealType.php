@@ -6,6 +6,7 @@ use App\Entity\Meal;
 use App\Entity\MealCategory;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -44,9 +45,13 @@ class MealType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('category', EntityType::class, [
-                'class'       => MealCategory::class,
+            ->add('category', ChoiceType::class, [
                 'label'       => 'Catégorie',
+                'choices'     => [
+                    'Entrées'  => 0,
+                    'Plats'    => 1,
+                    'Desserts' => 2,
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'meal_category.not_blank',

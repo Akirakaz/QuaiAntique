@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        parisienne: ["Parisienne", "sans-serif"],
+        playball: ["Playball", "sans-serif"],
       },
       zIndex: {
         1: "1",
@@ -18,6 +18,10 @@ module.exports = {
       },
       maxWidth: {
         '8xl': '90rem',
+        'screen-fhd': '1920px'
+      },
+      screens: {
+        'xs': '414px',
       }
     },
   },

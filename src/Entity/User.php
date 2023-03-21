@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -13,6 +14,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[UniqueEntity(fields: ['email'], message: 'email.exists')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    public const DEFAULT_GUESTS = [
+        '1 à 2' => 2,
+        '3 à 4' => 4,
+        '5 à 6' => 6,
+        '7 à 8' => 8,
+    ];
+    
     use TimestampableEntity;
 
     #[ORM\Id]
@@ -20,22 +28,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $bookingName = null;
+
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $phone = null;
+
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
     #[ORM\Column]
     private ?string $password = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $guests = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $allergies = null;
 
     public function getId(): ?int
@@ -55,6 +66,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getBookingName(): ?string
+    {
+        return $this->bookingName;
+    }
+
+    public function setBookingName(?string $bookingName): User
+    {
+        $this->bookingName = $bookingName;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): User
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
     /**
      * A visual identifier that represents this user.
      *
@@ -62,7 +97,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**

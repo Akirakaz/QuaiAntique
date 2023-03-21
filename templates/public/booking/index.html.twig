@@ -1,20 +1,19 @@
 {% extends 'public/base.html.twig' %}
 
-{% block title %}Hello BookingController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Applications/XAMPP/xamppfiles/htdocs/QuaiAntique/src/Controller/BookingController.php'|file_link(0) }}">src/Controller/BookingController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Applications/XAMPP/xamppfiles/htdocs/QuaiAntique/templates/booking/index.html.twig'|file_link(0) }}">templates/booking/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <main class="flex-grow">
+        <div class="mx-auto flex flex-col h-full">
+            <div class="flex h-full">
+                <div class="w-full md:w-1/2 mx-auto p-4">
+                    <h1 class="text-center font-playball text-5xl">Réservation</h1>
+                    <div class="w-full lg:w-1/2 mx-auto">
+                        {{ include('public/booking/_form.html.twig') }}
+                    </div>
+                </div>
+                <div class="hidden md:block md:w-1/2 reservation-bg bg-cover bg-center"></div>
+            </div>
+        </div>
+    </main>
 {% endblock %}
+
+

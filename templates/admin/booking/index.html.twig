@@ -1,0 +1,121 @@
+{#<!DOCTYPE html>#}
+
+{#<title>Booking index</title>#}
+
+{#{% block body %}#}
+{#    <h1>Booking index</h1>#}
+
+{#    <table class="table">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <th>BookingName</th>#}
+{#                <th>Phone</th>#}
+{#                <th>Email</th>#}
+{#                <th>Guests</th>#}
+{#                <th>Allergies</th>#}
+{#                <th>Date</th>#}
+{#                <th>Hour</th>#}
+{#                <th>CreatedAt</th>#}
+{#                <th>UpdatedAt</th>#}
+{#                <th>actions</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% for book in booking %}#}
+{#            <tr>#}
+{#                <td>{{ book.id }}</td>#}
+{#                <td>{{ book.bookingName }}</td>#}
+{#                <td>{{ book.phone }}</td>#}
+{#                <td>{{ book.email }}</td>#}
+{#                <td>{{ book.guests }}</td>#}
+{#                <td>{{ book.allergies }}</td>#}
+{#                <td>{{ book.date ? book.date|date('Y-m-d') : '' }}</td>#}
+{#                <td>{{ book.hour ? book.hour|date('H:i:s') : '' }}</td>#}
+{#                <td>{{ book.createdAt ? book.createdAt|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                <td>{{ book.updatedAt ? book.updatedAt|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                <td>#}
+
+{#                    <a href="{{ path('app_admin_booking_delete', {'id': book.id}) }}">edit</a>#}
+{#                </td>#}
+{#            </tr>#}
+{#        {% else %}#}
+{#            <tr>#}
+{#                <td colspan="11">no records found</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+
+{#{% endblock %}#}
+
+
+
+{% extends 'admin/base.html.twig' %}
+
+{% set title = "Gestion des Réservations" %}
+
+{% block pageTitle %}Admin - {{ title }}{% endblock %}
+
+{% block body %}
+    <main class="mx-auto w-full max-w-7xl flex-grow px-4 pt-20">
+        {% include 'admin/_partials/breadcrumb.html.twig' with {
+            'label' : title,
+            'categoryTitle': 'Réservations',
+            'categorySlug': path('app_admin_booking_index'),
+        } %}
+
+        <h1 class="my-8 text-3xl">{{ title }}</h1>
+
+
+        <div class="overflow-auto">
+            <table class="mt-4 min-w-full table-auto divide-y divide-gray-200">
+                <thead class="bg-slate-300">
+                <tr>
+                    <th scope="col" class="p-4 text-left text-xs text-slate-600">Nom</th>
+                    <th scope="col" class="p-4 text-center text-xs text-slate-600">Téléphone</th>
+                    <th scope="col" class="p-4 text-left text-xs text-slate-600">Email</th>
+                    <th scope="col" class="p-4 text-center text-xs text-slate-600">Couverts</th>
+                    <th scope="col" class="p-4 text-left text-xs text-slate-600">Allergies</th>
+                    <th scope="col" class="p-4 text-center text-xs text-slate-600">Pour Date</th>
+                    <th scope="col" class="p-4 text-center text-xs text-slate-600">Pour Heure</th>
+                    <th scope="col" class="p-4 text-center text-xs text-slate-600">Réservé le</th>
+                    <th scope="col" class="p-4 text-center text-xs text-slate-600">Actions</th>
+                </tr>
+                </thead>
+
+                <tbody class="bg-white divide-y divide-gray-300">
+                {% for booking in bookings %}
+                    <tr>
+                        <td class="p-2 text-xs text-gray-500">{{ booking.bookingName }}</td>
+                        <td class="p-2 text-xs text-center text-gray-500">{{ booking.phone|formatPhone }}</td>
+                        <td class="p-2 text-xs text-gray-500">{{ booking.email }}</td>
+                        <td class="p-2 text-xs text-center font-bold text-gray-500">{{ booking.guests }}</td>
+                        <td class="p-2 text-xs text-gray-500">
+                            <p class="hover:cursor-help" title="{{ booking.allergies }}">
+                                {{ booking.allergies|length > 50 ? booking.allergies|slice(0, 50) ~ '...' : booking.allergies }}
+                            </p>
+                        </td>
+                        <td class="p-2 text-xs text-center text-gray-500">{{ booking.date|date('d/m/y') }}</td>
+                        <td class="p-2 text-xs text-center text-gray-500">{{ booking.hour|date('H:i') }}</td>
+                        <td class="p-2 text-xs text-center text-gray-500">{{ booking.createdAt|date('d/m/y') }}</td>
+
+
+
+
+                        <td class="p-2 text-sm">
+                            <div class="flex justify-center gap-x-2">
+                                {{ include('admin/booking/_delete_form.html.twig') }}
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="9" class="text-center p-4">Aucune réservation enregistré</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+{% endblock %}

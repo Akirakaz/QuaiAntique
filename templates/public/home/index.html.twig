@@ -1,20 +1,41 @@
 {% extends 'public/base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block pageTitle %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <main class="flex-grow py-8">
+        <div class="mx-auto max-w-7xl">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <section>
+                <h1 class="mb-5 text-center text-5xl font-playball">Notre restaurant</h1>
+                <div class="flex justify-center rounded bg-slate-100 p-8 shadow-lg">
+                    <p class="m-5 text-center">
+                        A deux pas du centre historique de Chambéry, du Carré Curial, du Théâtre Malraux et de la
+                        statue des éléphants,<br>
+                        le chef Arnaud Michant et son équipe vous propose un autre regard sur nos terroirs.<br>
+                        Au Quai Antique, venez déguster une cuisine savoureuse et contemporaine inspirée des saisons et
+                        des produits locaux.<br>
+                        Les produits frais sont toujours à l’honneur, la carte évoluant tout au long de l’année.
+                    </p>
+                </div>
+            </section>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Applications/XAMPP/xamppfiles/htdocs/QuaiAntique/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Applications/XAMPP/xamppfiles/htdocs/QuaiAntique/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+            <section>
+                <h2 class="mt-20 text-center text-4xl font-playball">Nos créations</h2>
+                <div class="columns-1 gap-4 p-4 pt-8 sm:columns-2 lg:columns-3 xl:px-0">
+                    {% for image in images %}
+                        <div class="mb-4">
+                            <div class="relative">
+                                <img class="w-full rounded-lg object-center object-cover max-h-[15rem] sm:max-h-fit xs:min-h-[20rem]" src="{{ vich_uploader_asset(image) }}" alt="{{ image.description }}">
+                                <a class="absolute inset-0 flex items-center justify-center opacity-0 transition hover:bg-white/20 hover:backdrop-blur-sm hover:opacity-100" href="{{ path('app_booking') }}">
+                                    <span class="text-center text-xl font-semibold text-white z-1 lg:text-5xl text-shadow">{{ image.title }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+        {% include 'public/_partials/bookingside.html.twig' %}
+    </main>
 {% endblock %}
