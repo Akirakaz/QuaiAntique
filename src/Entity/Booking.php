@@ -49,9 +49,6 @@ class Booking
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?DateTimeInterface $hour = null;
 
-    #[ORM\ManyToOne(inversedBy: 'booking')]
-    private ?BookingDay $bookingDay = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -137,18 +134,6 @@ class Booking
     public function setHour(?DateTimeInterface $hour): Booking
     {
         $this->hour = $hour;
-        return $this;
-    }
-
-    public function getBookingDay(): ?BookingDay
-    {
-        return $this->bookingDay;
-    }
-
-    public function setBookingDay(?BookingDay $bookingDay): self
-    {
-        $this->bookingDay = $bookingDay;
-
         return $this;
     }
 }
