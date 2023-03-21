@@ -14,6 +14,16 @@ class BookingFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
+        $booking = new Booking();
+        $booking->setBookingName('Jane Doesnt');
+        $booking->setPhone(PhoneNumber::numerify('0479123456'));
+        $booking->setEmail('user@demo.com');
+        $booking->setGuests(2);
+        $booking->setAllergies('Aucunes');
+        $booking->setDate(new \DateTime());
+        $booking->setHour((new \DateTime())->setTime('12', '00', '00'));
+        $manager->persist($booking);
+
         for ($i = 0; $i < 5; $i++) {
             $booking = new Booking();
             $booking->setBookingName($faker->name);
