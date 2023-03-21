@@ -58,3 +58,29 @@ php -S localhost:8000 -t public/
 ### Déploiement sur un serveur
 
 Au moment de la modification du `.env.local`, n'oubliez pas de passer le paramètre `APP_ENV` à `prod` au lieu de `dev`
+
+### Identifiants par défaut
+
+Par défaut des comptes ont été crées avec les fixtures
+
+Un utilisateur client
+
+```
+email: user@demo.com
+mot de passe: user_password
+```
+
+Un utilisateur administrateur
+
+```
+email: admin@demo.com
+mot de passe: admin_password
+```
+
+Il est toutefois possible d'ajouter un autre administrateur via une commande dans le terminal:
+
+```
+php bin/console app:createadmin 
+
+Exemple: php bin/console app:createadmin user@domain.tld my_strong_password 
+```
