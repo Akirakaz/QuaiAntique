@@ -2,7 +2,8 @@ Makefile
 /.idea/
 .yarn/*
 .yarnrc.yaml
-/public/uploaded/
+/public/uploaded/mealsimg/*
+!/public/uploaded/mealsimg/.gitignore
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
