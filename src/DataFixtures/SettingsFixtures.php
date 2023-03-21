@@ -14,7 +14,7 @@ class SettingsFixtures extends Fixture
         $faker = Factory::create('fr_FR');
 
         $settings = new Settings();
-        $settings->setSeats($faker->numberBetween(40, 80));
+        $settings->setSeats($faker->numberBetween(40, 60));
         $settings->setRestaurant('QuaiAntique');
         $manager->persist($settings);
 
