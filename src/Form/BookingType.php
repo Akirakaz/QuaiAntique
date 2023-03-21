@@ -18,6 +18,7 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
 
+
 class BookingType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -57,6 +58,7 @@ class BookingType extends AbstractType
                 ],
             ])
             ->add('guests', ChoiceType::class, [
+                'required'    => true,
                 'label'       => 'Convives',
                 'choices'     => User::DEFAULT_GUESTS,
                 'constraints' => [
@@ -73,13 +75,16 @@ class BookingType extends AbstractType
                 ],
             ])
             ->add('date', DateType::class, [
-                'widget' => 'single_text',
-                'html5'  => true,
+                'required' => true,
+                'widget'   => 'single_text',
+                'html5'    => true,
+                'data'     => new \DateTime(),
             ])
             ->add('hour', TimeType::class, [
-                'label'   => 'Heure',
-                'hours'   => Booking::HOURS,
-                'minutes' => Booking::MINUTES,
+                'required' => true,
+                'label'    => 'Heure',
+                'hours'    => Booking::HOURS,
+                'minutes'  => Booking::MINUTES,
             ]);
     }
 

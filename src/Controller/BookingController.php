@@ -111,27 +111,30 @@ class BookingController extends AbstractController
     #[Route('/seats', name: 'app_booking_get_seats', methods: ['GET'])]
     public function getRemainingSeats(Request $request, BookingRepository $bookingRepository, SettingsRepository $settingsRepository): JsonResponse
     {
-        $rangeMorning = new DatePeriod(
-            new DateTime('12:00:00'),
-            new DateInterval('P1M'),
-            new DateTime('14:00:00'),
-        );
+        $hour = $request->query->get('bookingHour');
 
-        $rangeEvening = new DatePeriod(
-            new DateTime('19:00:00'),
-            new DateInterval('P1M'),
-            new DateTime('21:00:00'),
-        );
-
-        $date = new DateTime($request->query->get('bookingDate'));
+        if ($hour >= '12' && $hour < '14') {
+            $range = new DatePeriod(
+                new DateTime('12:00:00'),
+                new DateInterval('P1M'),
+                new DateTime('14:00:00'),
+            );
+        } else {
+            $range = new DatePeriod(
+                new DateTime('19:00:00'),
+                new DateInterval('P1M'),
+                new DateTime('21:00:00'),
+            );
+        }
 
         $settings   = $settingsRepository->findOneBy(['restaurant' => 'QuaiAntique']);
         $totalSeats = $settings->getSeats();
+        $date       = new DateTime($request->query->get('bookingDate'));
+        $usedSeats  = $bookingRepository->countGuestsForRange($range, $date);
+        $reserved   = $usedSeats ?: 0;
 
-        $usedSeats = $bookingRepository->countGuestsForRange($rangeMorning, $date);
-//        $remainingSeatsEvening = $bookingRepository->countGuestsForRange($rangeEvening, $date);
 
-        $availableSeats = $totalSeats - $usedSeats;
+        $availableSeats = ($totalSeats - $reserved);
 
         return $this->json($availableSeats, 200);
     }
