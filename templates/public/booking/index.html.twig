@@ -1,52 +1,19 @@
 {% extends 'public/base.html.twig' %}
 
 {% block body %}
-    <h1>Booking index</h1>
-
-
-
-    <button id="refresh" class="border-4 bg-red-500 w-16">Refresh</button>
-    <div id="seats" class="text-5xl font-black">
-
-    </div>
-
-    <label for="selectSeat">
-        <select name="selector" id="selectSeat">
-            <option value="2">2</option>
-            <option value="4">4</option>
-            <option value="6">6</option>
-            <option value="8">8</option>
-        </select>
-    </label>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Day</th>
-            <th>Hours</th>
-            <th>Guests</th>
-            <th>Allergies</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for booking in bookings %}
-            <tr>
-                {#                <td>{{ dump(booking) }}</td> #}
-                
-                <td>
-                    {#                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}">show</a> #}
-                    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_booking_new') }}">Create new</a>
+    <main class="flex-grow">
+        <div class="mx-auto flex flex-col h-full">
+            <div class="flex h-full">
+                <div class="w-full md:w-1/2 mx-auto p-4">
+                    <h1 class="text-center font-playball text-5xl">Réservation</h1>
+                    <div class="w-full lg:w-1/2 mx-auto">
+                        {{ include('public/booking/_form.html.twig') }}
+                    </div>
+                </div>
+                <div class="hidden md:block md:w-1/2 reservation-bg bg-cover bg-center"></div>
+            </div>
+        </div>
+    </main>
 {% endblock %}
+
+

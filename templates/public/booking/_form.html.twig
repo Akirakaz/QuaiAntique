@@ -1,10 +1,36 @@
-<div class="max-w-4xl mx-auto">
+<div class="mx-auto max-w-4xl mt-16">
     {{ form_start(form) }}
-    {#    {{ form_widget(form) }} #}
-    {{ form_row(form.guests) }}
-    <div id="seats" class="text-red-500"></div>
-    {#    <button class="rounded bg-slate-200 px-4 py-2 hover:bg-slate-300">{{ button_label|default('Save') }}</button> #}
+    <div class="flex flex-col gap-4">
+        <div class="flex flex-wrap justify-between">
+            <div>
+                {{ form_row(form.date) }}
+            </div>
+            <div>
+                {{ form_label(form.hour) }}
+                {{ form_widget(form.hour, {attr: {'class': 'flex'}}) }}
+            </div>
+            <div>
+                {{ form_label(form.guests) }}
+                {{ form_widget(form.guests, {attr: {'class': 'flex mt-1'}}) }}
+            </div>
+        </div>
+        <div id="seats" class="text-red-500"></div>
+        <div>
+            {{ form_row(form.bookingName) }}
+        </div>
+        <div>
+            {{ form_row(form.email) }}
+        </div>
+        <div>
+            {{ form_row(form.phone) }}
+        </div>
+        <div>
+            {{ form_row(form.allergies) }}
+        </div>
+    </div>
 
-    <div id="submit"></div>
+    <div class="flex justify-end">
+        <div class="mt-4" id="submit"></div>
+    </div>
     {{ form_end(form) }}
 </div>

@@ -49,6 +49,10 @@ select, input, textarea {
   @apply bg-[url('../img/bg/connexion.webp')]
 }
 
+.reservation-bg {
+  @apply bg-[url('../img/bg/reservation.webp')]
+}
+
 .formula-icon {
   @apply flex items-center;
 
