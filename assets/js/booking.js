@@ -20,7 +20,7 @@ const request = (url, params = {}, method = 'GET') => {
 const get = (url, params) => request(url, params, 'GET');
 const post = (url, params) => request(url, params, 'POST');
 
-let valid = true;
+let valid = false;
 
 async function getAvailableSeats() {
   return get('/booking/seats', {
@@ -35,21 +35,25 @@ selectSeat.addEventListener('change', async function (event) {
   if (parseInt(wantToBookSeats) > parseInt(availableSeats)) {
     seats.innerText = `Il n'y a plus de table pour ${wantToBookSeats} personnes.`;
     valid = false
-
-    test(valid)
-  } else (
+    showSubmitButton(valid)
+  } else {
     seats.innerText = ""
-  )
+    valid = true;
+    showSubmitButton(valid)
+  }
 })
 
-function test() {
+function showSubmitButton() {
   if (valid) {
-    console.log(valid)
-
     const submitBtn = document.createElement('button')
+
     submitBtn.innerText = 'Réserver'
-    submitBtn.classList.add('bg-green-500')
+    submitBtn.id = 'submitBtn'
+    submitBtn.classList.add('rounded', 'bg-slate-200', 'px-4', 'py-2', 'hover:bg-slate-300')
+
     submitDiv.appendChild(submitBtn)
+  } else {
+    document.getElementById('submitBtn').remove()
   }
 }
 
