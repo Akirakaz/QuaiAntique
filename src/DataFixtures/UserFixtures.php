@@ -29,12 +29,12 @@ class UserFixtures extends Fixture
         $manager->persist($user);
 
         $user = new User();
-        $user->setBookingName($faker->name);
-        $user->setPhone(PhoneNumber::numerify('047#######'));
+        $user->setBookingName('Jane Doesnt');
+        $user->setPhone(PhoneNumber::numerify('0479123456'));
         $user->setEmail('user@demo.com');
         $user->setPassword($this->hasher->hashPassword($user, 'user_password'));
-        $user->setGuests($faker->numberBetween(1, 8));
-        $user->setAllergies($faker->text);
+        $user->setGuests(2);
+        $user->setAllergies('Aucunes');
         $user->setRoles(['ROLE_CLIENT']);
         $manager->persist($user);
 
